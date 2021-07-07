@@ -3,8 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-/** @var yii\web\View $this */
-/** @var array $result */
+/**
+ * @var yii\web\View $this
+ * @var array $result
+ */
 
 $this->title = '任务状态';
 $this->params['breadcrumbs'][] = '中文提取';
