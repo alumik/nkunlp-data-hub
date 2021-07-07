@@ -1,53 +1,52 @@
 <?php
 
-/* @var $this yii\web\View */
+use yii\bootstrap\Progress;
+use yii\helpers\Html;
 
-$this->title = 'My Yii Application';
+/** @var array $progress */
+
+$this->title = Yii::$app->name;
 ?>
+
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1>南开大学软件学院<br/>NLP 数据管理中心</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p class="lead">NLP Data Management Center of College of Software, Nankai University.</p>
     </div>
 
     <div class="body-content">
-
         <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+            <div class="col-lg-6">
+                <h2>数据下载</h2>
+                <p>
+                    <strong>进度：</strong><?= $progress['dataDownload']['finished'] . '/' . $progress['dataDownload']['all'] . ' (' . number_format($progress['dataDownload']['finished'] / $progress['dataDownload']['all'] * 100, 2) . '%).'; ?>
+                </p>
+                <p>
+                    <?= Progress::widget([
+                        'percent' => $progress['dataDownload']['finished'] / $progress['dataDownload']['all'] * 100,
+                    ]); ?>
+                </p>
+                <p>
+                    <?= Html::a('任务列表 &raquo;', ['/data-download/index'], ['class' => 'btn btn-default']); ?>
+                </p>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+            <div class="col-lg-6">
+                <h2>中文提取</h2>
+                <p>
+                    <strong>进度：</strong><?= $progress['chineseExtraction']['finished'] . '/' . $progress['chineseExtraction']['all'] . ' (' . number_format($progress['chineseExtraction']['finished'] / $progress['chineseExtraction']['all'] * 100, 2) . '%).'; ?>
+                </p>
+                <p>
+                    <?= Progress::widget([
+                        'percent' => $progress['chineseExtraction']['finished'] / $progress['chineseExtraction']['all'] * 100,
+                    ]); ?>
+                </p>
+                <p>
+                    <?= Html::a('任务列表 &raquo;', ['/chinese-extraction/index'], ['class' => 'btn btn-default']); ?>
+                </p>
             </div>
         </div>
-
     </div>
+
 </div>
