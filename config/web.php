@@ -1,12 +1,14 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'name' => 'NKU NLP 数据管理中心',
+    'language' => 'zh-CN',
+    'timeZone' => 'Asia/Shanghai',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -42,15 +44,17 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
-        /*
+        'db' => require __DIR__ . '/db-nkunlp-preprocessing.php',
+        'dbCommonCrawl' => require __DIR__ . '/db-common-crawl.php',
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>' => '<controller>/index',
+                '<controller:\w+>/<id:\d+>/<action:\w+>' => '<controller>/<action>',
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
@@ -68,7 +72,7 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*'],
     ];
 }
 
