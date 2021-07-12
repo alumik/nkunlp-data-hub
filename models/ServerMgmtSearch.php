@@ -23,12 +23,13 @@ class ServerMgmtSearch extends ServerMgmt
 
     public function search($params)
     {
-        $query = ServerMgmt::find()->orderBy('server');
+        $query = ServerMgmt::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['server' => SORT_ASC]],
         ]);
 
         $this->load($params);
