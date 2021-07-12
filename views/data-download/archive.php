@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /** @var SqlDataProvider $dataProvider */
 
 $this->title = '各归档月份下载进度';
-$this->params['breadcrumbs'][] = '数据下载';
+$this->params['breadcrumbs'][] = ['label' => '数据下载', 'url' => 'index'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

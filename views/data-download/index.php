@@ -12,7 +12,6 @@ use yii\grid\GridView;
 
 $this->title = '任务列表';
 $this->params['breadcrumbs'][] = '数据下载';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="data-download">

@@ -8,7 +8,7 @@ use yii\grid\GridView;
 /** @var ArrayDataProvider $dataProvider */
 
 $this->title = '任务状态';
-$this->params['breadcrumbs'][] = '数据下载';
+$this->params['breadcrumbs'][] = ['label' => '数据下载', 'url' => 'index'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

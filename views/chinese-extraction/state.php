@@ -9,7 +9,7 @@ use yii\widgets\DetailView;
  */
 
 $this->title = '任务状态';
-$this->params['breadcrumbs'][] = '中文提取';
+$this->params['breadcrumbs'][] = ['label' => '中文提取', 'url' => 'index'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

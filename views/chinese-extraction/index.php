@@ -8,7 +8,6 @@ use yii\grid\GridView;
 
 $this->title = '任务列表';
 $this->params['breadcrumbs'][] = '中文提取';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="chinese-extraction">
