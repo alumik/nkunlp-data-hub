@@ -17,7 +17,7 @@ class ServerMgmtSearch extends ServerMgmt
     public function rules()
     {
         return [
-            [['id', 'id_device'], 'integer'],
+            [['id', 'id_device', 'mounted'], 'integer'],
             [['server', 'task', 'notes'], 'safe'],
         ];
     }
@@ -60,7 +60,7 @@ class ServerMgmtSearch extends ServerMgmt
         $query->andFilterWhere([
             'id' => $this->id,
             'id_device' => $this->id_device,
-            'modified_at' => $this->modified_at,
+            'mounted' => $this->mounted,
         ]);
 
         $query->andFilterWhere(['like', 'server', $this->server])

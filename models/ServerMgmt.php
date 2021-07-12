@@ -13,6 +13,7 @@ use Yii;
  * @property string|null $task
  * @property string|null $notes
  * @property string $modified_at
+ * @property int $mounted
  *
  * @property Device $device
  */
@@ -32,8 +33,8 @@ class ServerMgmt extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['server'], 'required'],
-            [['id_device'], 'integer'],
+            [['server', 'mounted'], 'required'],
+            [['id_device', 'mounted'], 'integer'],
             [['notes'], 'string'],
             [['modified_at'], 'safe'],
             [['server'], 'string', 'max' => 15],
@@ -51,10 +52,11 @@ class ServerMgmt extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'server' => '服务器',
-            'id_device' => '挂载的存储设备',
+            'id_device' => '存储设备编号',
             'task' => '任务类型',
             'notes' => '详细信息',
             'modified_at' => '修改时间',
+            'mounted' => '已挂载',
         ];
     }
 

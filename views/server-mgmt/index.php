@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /**
- * @var app\models\ServerMgmtSearch$searchModel
+ * @var app\models\ServerMgmtSearch $searchModel
  * @var yii\data\ActiveDataProvider $dataProvider
  */
 
@@ -26,6 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'server',
+            [
+                'attribute' => 'mounted',
+                'value' => function ($model) {
+                    return [0 => '否', 1 => '是'][$model->mounted];
+                },
+                'filter' => [0 => '否', 1 => '是'],
+            ],
             [
                 'attribute' => 'id_device',
                 'value' => 'device.device_name',

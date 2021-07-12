@@ -32,6 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'server',
             [
+                'attribute' => 'mounted',
+                'value' => function ($model) {
+                    return [0 => '否', 1 => '是'][$model->mounted];
+                }
+            ],
+            [
                 'attribute' => 'id_device',
                 'value' => $model->device == null ? '(未设置)' : $model->device->device_name,
                 'contentOptions' => ['class' => 'not-set'],
