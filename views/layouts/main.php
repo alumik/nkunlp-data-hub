@@ -38,12 +38,11 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => '服务器管理', 'url' => '/server-mgmt/index'],
             [
-                'label' => '信息查询',
+                'label' => '信息管理',
                 'items' => [
-                    ['label' => '归档月份和磁盘对照表', 'url' => '/info/archive-device'],
-                    ['label' => '归档月份和数据编码对照表', 'url' => '/info/archive-cc-code'],
+                    ['label' => '服务器管理', 'url' => '/server-mgmt'],
+                    ['label' => '存储设备管理', 'url' => '/device-mgmt'],
                 ],
             ],
             [
