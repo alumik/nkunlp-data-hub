@@ -38,6 +38,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            ['label' => '服务器管理', 'url' => '/server-mgmt/index'],
             [
                 'label' => '信息查询',
                 'items' => [
