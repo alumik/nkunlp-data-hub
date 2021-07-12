@@ -14,7 +14,7 @@ class DeviceMgmt extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'updated_at'], 'required'],
+            [['name'], 'required'],
             [['notes'], 'string'],
             [['updated_at'], 'safe'],
             [['name', 'archive', 'cc_code'], 'string', 'max' => 16],
@@ -32,5 +32,14 @@ class DeviceMgmt extends ActiveRecord
             'notes' => '备注',
             'updated_at' => '修改时间',
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->updated_at = date('Y-m-d H:i:s');
+            return true;
+        }
+        return false;
     }
 }
