@@ -16,17 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'server')->textInput(['maxlength' => true]); ?>
 
-    <?= $form->field($model, 'mounted')->dropDownList(
-        ['否', '是'],
-        ['prompt' => '请选择挂载状态']); ?>
-
-    <?= $form->field($model, 'id_device')->dropDownList(
-        Device::find()
-            ->select(['device_name', 'id'])
-            ->orderBy('id')
-            ->indexBy('id')
-            ->column(),
-        ['prompt' => '请选择挂载的存储设备编号']); ?>
+    <?= $form->field($model, 'device')->textInput(['maxlength' => true]); ?>
 
     <?= $form->field($model, 'task')->textInput(['maxlength' => true]); ?>
 

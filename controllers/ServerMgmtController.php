@@ -9,14 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * ServerMgmtController implements the CRUD actions for ServerMgmt model.
- */
 class ServerMgmtController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()
     {
         return [
@@ -29,10 +23,6 @@ class ServerMgmtController extends Controller
         ];
     }
 
-    /**
-     * Lists all ServerMgmt models.
-     * @return mixed
-     */
     public function actionIndex()
     {
         $searchModel = new ServerMgmtSearch();
@@ -44,12 +34,6 @@ class ServerMgmtController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single ServerMgmt model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -57,11 +41,6 @@ class ServerMgmtController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new ServerMgmt model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate()
     {
         $model = new ServerMgmt();
@@ -75,13 +54,6 @@ class ServerMgmtController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing ServerMgmt model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -95,13 +67,6 @@ class ServerMgmtController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing ServerMgmt model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -109,13 +74,6 @@ class ServerMgmtController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the ServerMgmt model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return ServerMgmt the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
         if (($model = ServerMgmt::findOne($id)) !== null) {

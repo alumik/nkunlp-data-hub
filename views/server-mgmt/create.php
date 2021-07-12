@@ -4,7 +4,8 @@ use yii\helpers\Html;
 
 /** @var app\models\ServerMgmt $model */
 
-$this->title = '新增服务器管理信息';
+$this->title = '新增服务器信息';
+$this->params['breadcrumbs'][] = '信息管理';
 $this->params['breadcrumbs'][] = ['label' => '服务器管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

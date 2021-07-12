@@ -10,6 +10,7 @@ use yii\grid\GridView;
  */
 
 $this->title = '服务器管理';
+$this->params['breadcrumbs'][] = '信息管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -18,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title); ?></h1>
 
     <p>
-        <?= Html::a('新增服务器管理信息', ['create'], ['class' => 'btn btn-success']); ?>
+        <?= Html::a('新增服务器信息', ['create'], ['class' => 'btn btn-success']); ?>
     </p>
 
     <?= GridView::widget([
@@ -26,22 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'server',
-            [
-                'attribute' => 'mounted',
-                'value' => function ($model) {
-                    return [0 => '否', 1 => '是'][$model->mounted];
-                },
-                'filter' => [0 => '否', 1 => '是'],
-            ],
-            [
-                'attribute' => 'id_device',
-                'value' => 'device.device_name',
-                'filter' => Device::AllDevices(),
-            ],
+            'device',
             'task',
             'notes:ntext',
-            'modified_at',
-
+            'updated_at',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

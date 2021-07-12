@@ -6,6 +6,7 @@ use yii\widgets\DetailView;
 /** @var $model app\models\ServerMgmt */
 
 $this->title = $model->server;
+$this->params['breadcrumbs'][] = '信息管理';
 $this->params['breadcrumbs'][] = ['label' => '服务器管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => '你确定要删除该项吗？',
+                'confirm' => '您确定要删除此项吗？',
                 'method' => 'post',
             ],
         ]); ?>
@@ -31,20 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'server',
-            [
-                'attribute' => 'mounted',
-                'value' => function ($model) {
-                    return [0 => '否', 1 => '是'][$model->mounted];
-                }
-            ],
-            [
-                'attribute' => 'id_device',
-                'value' => $model->device == null ? '(未设置)' : $model->device->device_name,
-                'contentOptions' => ['class' => 'not-set'],
-            ],
+            'device',
             'task',
             'notes:ntext',
-            'modified_at',
+            'updated_at',
         ],
     ]); ?>
 
