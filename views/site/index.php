@@ -12,10 +12,10 @@ $this->title = Yii::$app->name;
 
     <div class="jumbotron">
         <?= Html::img('@web/nankai-logo.svg', ['alt' => '南开大学', 'style' => 'height: 108px;']); ?>
-
         <h1>软件学院 NLP 数据管理中心</h1>
-
-        <p class="lead">NLP Data Management Center of College of Software, Nankai University.</p>
+        <p class="lead" id="hitokoto-text"></p>
+        <hr/>
+        <p id="hitokoto"></p>
     </div>
 
     <div class="body-content">
@@ -33,3 +33,16 @@ $this->title = Yii::$app->name;
     </div>
 
 </div>
+
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://v1.hitokoto.cn?c=d&c=h&c=i&c=k');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            var data = JSON.parse(xhr.responseText);
+            var hitokoto = document.getElementById('hitokoto');
+            hitokoto.innerText = data.hitokoto;
+        }
+    }
+    xhr.send();
+</script>
