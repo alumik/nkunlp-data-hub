@@ -4,8 +4,8 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /**
- * @var $searchModel app\models\DeviceMgmtSearch
- * @var $dataProvider yii\data\ActiveDataProvider
+ * @var app\models\DeviceMgmtSearch $searchModel
+ * @var yii\data\ActiveDataProvider $dataProvider
  */
 
 $this->title = '存储设备管理';

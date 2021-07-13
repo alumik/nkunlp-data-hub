@@ -1,6 +1,5 @@
 <?php
 
-use app\models\Device;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 

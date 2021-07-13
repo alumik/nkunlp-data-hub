@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-/** @var $model app\models\ServerMgmt */
+/** @var app\models\ServerMgmt $model */
 
 $this->title = $model->server;
 $this->params['breadcrumbs'][] = '信息管理';

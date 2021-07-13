@@ -39,6 +39,13 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             [
+                'label' => '信息查询',
+                'items' => [
+                    ['label' => '各项任务进度', 'url' => '/info/progress'],
+                    ['label' => '归档月份和数据编码对照表', 'url' => '/info/archive-cc-code'],
+                ],
+            ],
+            [
                 'label' => '信息管理',
                 'items' => [
                     ['label' => '服务器管理', 'url' => '/server-mgmt'],

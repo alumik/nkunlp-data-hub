@@ -4,8 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /**
- * @var $model app\models\DeviceMgmt
- * @var $form yii\widgets\ActiveForm
+ * @var app\models\DeviceMgmt $model
+ * @var yii\widgets\ActiveForm $form
  */
 ?>
 

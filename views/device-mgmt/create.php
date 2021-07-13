@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-/** @var $model app\models\DeviceMgmt */
+/** @var app\models\DeviceMgmt $model */
 
 $this->title = '新增存储设备';
 $this->params['breadcrumbs'][] = '信息管理';
