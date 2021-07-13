@@ -4,10 +4,26 @@ namespace app\controllers;
 
 use Yii;
 use yii\data\SqlDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 
 class InfoController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionProgress()
     {
         $db = Yii::$app->getDb();

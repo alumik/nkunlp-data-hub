@@ -1,0 +1,16 @@
+a {
+    color: #830257;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #830257;
+    border-color: #830257;
+}
+
+.pagination > li > a, .pagination > li > span {
+    color: #830257;
+}
+
+.progress-bar {
+    background-color: #830257;
+}

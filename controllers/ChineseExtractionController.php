@@ -4,11 +4,27 @@ namespace app\controllers;
 
 use Yii;
 use yii\data\SqlDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 
 class ChineseExtractionController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex($uri = '', $deviceName = '', $archive = '')
     {
         $connection = Yii::$app->getDb();

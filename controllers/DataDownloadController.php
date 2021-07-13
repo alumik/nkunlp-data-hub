@@ -6,10 +6,26 @@ use app\models\CommonCrawlDataSearch;
 use Yii;
 use yii\data\ArrayDataProvider;
 use yii\data\SqlDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 
 class DataDownloadController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         $searchModel = new CommonCrawlDataSearch();
