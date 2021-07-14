@@ -58,28 +58,28 @@ class InfoController extends Controller
 
     public function actionArchiveCcCode($ccCode = '', $archive = '')
     {
-        $connection = Yii::$app->get('dbCommonCrawl');
+        $connection = Yii::$app->getDb();
         $count = $connection->createCommand("
-            select count(distinct(archive))
-            from data
+            select count(*)
+            from archive_cc_code
             where archive like :archive
-              and substring(uri, 12, 15) like :ccCode
+              and cc_code like :ccCode
         ", [':ccCode' => '%' . $ccCode . '%', ':archive' => $archive . '%'])->queryScalar();
         $dataProvider = new SqlDataProvider([
             'db' => $connection,
             'sql' => "
-                select distinct(archive) as archive0,
-                       substring(uri, 12, 15) as ccCode
-                from data
+                select archive,
+                       cc_code as ccCode
+                from archive_cc_code
                 where archive like :archive
-                  and substring(uri, 12, 15) like :ccCode
+                  and cc_code like :ccCode
             ",
             'params' => [':ccCode' => '%' . $ccCode . '%', ':archive' => $archive . '%'],
             'totalCount' => $count,
             'sort' => [
-                'defaultOrder' => ['archive0' => SORT_ASC],
+                'defaultOrder' => ['archive' => SORT_ASC],
                 'attributes' => [
-                    'archive0',
+                    'archive',
                     'ccCode',
                 ],
             ],

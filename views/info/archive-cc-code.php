@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             [
-                'attribute' => 'archive0',
+                'attribute' => 'archive',
                 'label' => '归档月份',
                 'filter' => Html::input('text', 'archive', $searchModel['archive'], ['class' => 'form-control']),
             ],
