@@ -44,7 +44,7 @@ $this->title = Yii::$app->name;
             if (data.hitokoto !== undefined) {
                 hitokoto.innerText = data.hitokoto;
             } else {
-                hitokoto.innerText = '只是，想要做些什么而已。 觉得不做些什么就会死掉而已。'
+                hitokoto.innerText = '不经一番寒彻骨，怎得梅花扑鼻香。'
             }
         }
     }
