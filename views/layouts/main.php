@@ -64,6 +64,7 @@ AppAsset::register($this);
                 'items' => [
                     ['label' => '服务器管理', 'url' => '/server-mgmt'],
                     ['label' => '存储设备管理', 'url' => '/device-mgmt'],
+                    ['label' => '硬盘使用管理', 'url' => '/drive-mgmt'],
                 ],
                 'visible' => !Yii::$app->user->isGuest,
             ],
