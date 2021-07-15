@@ -3,6 +3,7 @@
 namespace app\models;
 
 use yii\db\ActiveRecord;
+use yii\db\Query;
 
 class DeviceMgmt extends ActiveRecord
 {
@@ -19,6 +20,7 @@ class DeviceMgmt extends ActiveRecord
             [['updated_at'], 'safe'],
             [['name', 'archive', 'cc_code'], 'string', 'max' => 16],
             [['name'], 'unique'],
+            [['archive', 'cc_code'], 'archiveCodeMatch'],
         ];
     }
 
@@ -41,5 +43,17 @@ class DeviceMgmt extends ActiveRecord
             return true;
         }
         return false;
+    }
+
+    public function archiveCodeMatch($attribute)
+    {
+        $archive = (new Query())
+            ->select('archive')
+            ->from('archive_cc_code')
+            ->where(['cc_code' => $this->cc_code])
+            ->scalar();
+        if ($archive != $this->archive) {
+            $this->addError($attribute, '归档月份和数据编码不匹配。');
+        }
     }
 }
