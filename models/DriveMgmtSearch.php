@@ -29,7 +29,7 @@ class DriveMgmtSearch extends DriveMgmt
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['updated_at' => SORT_DESC]],
+            'sort' => ['defaultOrder' => ['name' => SORT_ASC]],
         ]);
 
         $this->load($params);
