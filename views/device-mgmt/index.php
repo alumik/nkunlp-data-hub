@@ -8,7 +8,7 @@ use yii\grid\GridView;
  * @var yii\data\ActiveDataProvider $dataProvider
  */
 
-$this->title = '存储设备管理';
+$this->title = '数据存储管理';
 $this->params['breadcrumbs'][] = '信息管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title); ?></h1>
 
     <p>
-        <?= Html::a('新增存储设备', ['create'], ['class' => 'btn btn-success']); ?>
+        <?= Html::a('新增数据存储信息', ['create'], ['class' => 'btn btn-success']); ?>
     </p>
 
     <?= GridView::widget([

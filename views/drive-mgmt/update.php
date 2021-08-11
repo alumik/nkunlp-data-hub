@@ -4,9 +4,9 @@ use yii\helpers\Html;
 
 /** @var app\models\DriveMgmt $model */
 
-$this->title = '修改硬盘使用信息';
+$this->title = '修改硬盘信息: ' . $model->name;
 $this->params['breadcrumbs'][] = '信息管理';
-$this->params['breadcrumbs'][] = ['label' => '硬盘使用管理', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '硬盘管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = '修改';
 ?>

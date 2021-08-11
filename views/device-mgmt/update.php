@@ -4,9 +4,9 @@ use yii\helpers\Html;
 
 /** @var app\models\DeviceMgmt $model */
 
-$this->title = '修改存储设备: ' . $model->name;
+$this->title = '修改数据存储信息: ' . $model->name;
 $this->params['breadcrumbs'][] = '信息管理';
-$this->params['breadcrumbs'][] = ['label' => '存储设备管理', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '数据存储管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $model->id;
 $this->params['breadcrumbs'][] = '修改';
 ?>

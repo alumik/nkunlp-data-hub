@@ -5,9 +5,9 @@ use yii\widgets\DetailView;
 
 /** @var app\models\DriveMgmt $model */
 
-$this->title = '硬盘使用信息';
+$this->title = '硬盘信息: ' . $model->name;
 $this->params['breadcrumbs'][] = '信息管理';
-$this->params['breadcrumbs'][] = ['label' => '硬盘使用管理', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '硬盘管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>

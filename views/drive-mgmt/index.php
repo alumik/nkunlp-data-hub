@@ -9,7 +9,7 @@ use app\models\DriveMgmt;
  * @var yii\data\ActiveDataProvider $dataProvider
  */
 
-$this->title = '硬盘使用管理';
+$this->title = '硬盘管理';
 $this->params['breadcrumbs'][] = '信息管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title); ?></h1>
 
     <p>
-        <?= Html::a('新增硬盘使用信息', ['create'], ['class' => 'btn btn-success']); ?>
+        <?= Html::a('新增硬盘信息', ['create'], ['class' => 'btn btn-success']); ?>
     </p>
 
     <?= GridView::widget([
