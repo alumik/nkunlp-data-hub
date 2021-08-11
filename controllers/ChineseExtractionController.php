@@ -100,16 +100,50 @@ class ChineseExtractionController extends Controller
         $dataProvider = new SqlDataProvider([
             'db' => $connection,
             'sql' => "
-                select device_name as deviceName,
-                       archive,
-                       format_bytes(sum(size)) as readableSize,
-                       count(*) as fileCount
-                from storage
-                         left join device on storage.id_device = device.id
-                where prefix = 'original'
-                  and device_name like :deviceName
-                  and archive like :archive
-                group by device_name, archive
+                select t0.deviceName                              as deviceName,
+                       t0.archive                                 as archive,
+                       format_bytes(t0.readableSize)              as totalSize,
+                       t0.fileCount                               as totalCount,
+                       format_bytes(coalesce(t1.readableSize, 0)) as unprocessedSize,
+                       coalesce(t1.fileCount, 0)                  as unprocessedCount,
+                       format_bytes(coalesce(t2.readableSize, 0)) as processedSize,
+                       coalesce(t2.fileCount, 0)                  as processedCount
+                from (select device_name as deviceName,
+                             archive,
+                             sum(size) as readableSize,
+                             count(*) as fileCount
+                      from storage
+                               left join device on storage.id_device = device.id
+                      where prefix = 'original'
+                            and device_name like :deviceName
+                            and archive like :archive
+                      group by device_name, archive) t0
+                         left join
+                     (select device_name as deviceName,
+                             sum(size)   as readableSize,
+                             count(*)    as fileCount
+                      from storage
+                               left join device on storage.id_device = device.id
+                               left join data d on storage.id = d.id_storage
+                      where prefix = 'original'
+                        and filter_state != 2
+                        and device_name like :deviceName
+                        and storage.archive like :archive
+                      group by device_name) t1
+                     on t0.deviceName = t1.deviceName
+                         left join
+                     (select device_name as deviceName,
+                             sum(size)   as readableSize,
+                             count(*)    as fileCount
+                      from storage
+                               left join device on storage.id_device = device.id
+                               left join data d on storage.id = d.id_storage
+                      where prefix = 'original'
+                        and filter_state = 2
+                        and device_name like :deviceName
+                        and storage.archive like :archive
+                      group by device_name) t2
+                     on t0.deviceName = t2.deviceName
             ",
             'params' => [':deviceName' => '%' . $deviceName . '%', ':archive' => $archive . '%'],
             'totalCount' => $count,
@@ -118,11 +152,21 @@ class ChineseExtractionController extends Controller
                 'attributes' => [
                     'deviceName',
                     'archive',
-                    'fileCount',
-                    'readableSize' => [
-                        'asc' => ['sum(size)' => SORT_ASC],
-                        'desc' => ['sum(size)' => SORT_DESC],
-                    ]
+                    'totalCount',
+                    'unprocessedCount',
+                    'processedCount',
+                    'totalSize' => [
+                        'asc' => ['t0.readableSize' => SORT_ASC],
+                        'desc' => ['t0.readableSize' => SORT_DESC],
+                    ],
+                    'unprocessedSize' => [
+                        'asc' => ['t1.readableSize' => SORT_ASC],
+                        'desc' => ['t1.readableSize' => SORT_DESC],
+                    ],
+                    'processedSize' => [
+                        'asc' => ['t2.readableSize' => SORT_ASC],
+                        'desc' => ['t2.readableSize' => SORT_DESC],
+                    ],
                 ],
             ],
             'pagination' => [

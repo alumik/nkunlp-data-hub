@@ -37,12 +37,28 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => Html::input('text', 'archive', $searchModel['archive'], ['class' => 'form-control']),
             ],
             [
-                'attribute' => 'fileCount',
-                'label' => '文件数量',
+                'attribute' => 'totalCount',
+                'label' => '总文件数量',
             ],
             [
-                'attribute' => 'readableSize',
-                'label' => '存储大小',
+                'attribute' => 'totalSize',
+                'label' => '总存储大小',
+            ],
+            [
+                'attribute' => 'unprocessedCount',
+                'label' => '待正则清洗数量',
+            ],
+            [
+                'attribute' => 'unprocessedSize',
+                'label' => '待正则清洗大小',
+            ],
+            [
+                'attribute' => 'processedCount',
+                'label' => '已正则清洗数量',
+            ],
+            [
+                'attribute' => 'processedSize',
+                'label' => '已正则清洗大小',
             ],
         ],
     ]); ?>
