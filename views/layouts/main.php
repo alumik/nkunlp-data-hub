@@ -52,16 +52,13 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             [
-                'label' => '信息查询',
+                'label' => '信息中心',
                 'items' => [
+                    '<li class="dropdown-header">信息查询</li>',
                     ['label' => '各项任务进度', 'url' => '/info/progress'],
                     ['label' => '归档月份和数据编码对照表', 'url' => '/info/archive-cc-code'],
-                ],
-                'visible' => !Yii::$app->user->isGuest,
-            ],
-            [
-                'label' => '信息管理',
-                'items' => [
+                    '<li class="divider"></li>',
+                    '<li class="dropdown-header">信息管理</li>',
                     ['label' => '服务器管理', 'url' => '/server-mgmt'],
                     ['label' => '硬盘管理', 'url' => '/drive-mgmt'],
                     ['label' => '数据存储管理', 'url' => '/device-mgmt'],

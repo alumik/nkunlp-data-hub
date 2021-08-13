@@ -51,6 +51,14 @@ class InfoController extends Controller
             from data
             where id_storage is not null
         ")->queryScalar();
+
+        $progress['filter'] = [];
+        $progress['filter']['all'] = $progress['chineseExtraction']['all'];
+        $progress['filter']['finished'] = $db->createCommand("
+            select count(*)
+            from filtered
+        ")->queryScalar();
+
         return $this->render('progress', [
             'progress' => $progress,
         ]);
