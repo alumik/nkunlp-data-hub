@@ -6,7 +6,6 @@ use Yii;
 use yii\data\SqlDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
 
 class ChineseExtractionController extends Controller
 {

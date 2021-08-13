@@ -94,6 +94,14 @@ AppAsset::register($this);
                 ],
                 'visible' => !Yii::$app->user->isGuest,
             ],
+            [
+                'label' => '正则清洗',
+                'items' => [
+                    '<li class="dropdown-header">任务</li>',
+                    ['label' => '任务状态', 'url' => '/filter/state'],
+                ],
+                'visible' => !Yii::$app->user->isGuest,
+            ],
             Yii::$app->user->isGuest ? (
             ['label' => '登录', 'url' => ['/site/login']]
             ) : (
