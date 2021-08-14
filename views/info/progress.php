@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <h3 class="panel-title">数据下载</h3>
                 </div>
                 <div class="panel-body">
-                    <?php $dataDownloadProgress = $progress['dataDownload']['finished'] / $progress['dataDownload']['all'] * 100 ?>
+                    <?php $dataDownloadProgress = $progress['dataDownload']['finished'] / $progress['dataDownload']['all'] * 100; ?>
                     <p>
                         <strong>进度：</strong><?= $progress['dataDownload']['finished'] . '/' . $progress['dataDownload']['all'] . ' (' . number_format($dataDownloadProgress, 2) . '%).'; ?>
                     </p>
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <h3 class="panel-title">中文提取</h3>
                 </div>
                 <div class="panel-body">
-                    <?php $chineseExtractionProgress = $progress['chineseExtraction']['finished'] / $progress['chineseExtraction']['all'] * 100 ?>
+                    <?php $chineseExtractionProgress = $progress['chineseExtraction']['finished'] / $progress['chineseExtraction']['all'] * 100; ?>
                     <p>
                         <strong>进度：</strong><?= $progress['chineseExtraction']['finished'] . '/' . $progress['chineseExtraction']['all'] . ' (' . number_format($chineseExtractionProgress, 2) . '%).'; ?>
                     </p>
@@ -69,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <h3 class="panel-title">正则清洗</h3>
                 </div>
                 <div class="panel-body">
-                    <?php $filterProgress = $progress['filter']['finished'] / $progress['filter']['all'] * 100 ?>
+                    <?php $filterProgress = $progress['filter']['finished'] / $progress['filter']['all'] * 100; ?>
                     <p>
                         <strong>进度：</strong><?= $progress['filter']['finished'] . '/' . $progress['filter']['all'] . ' (' . number_format($filterProgress, 2) . '%).'; ?>
                     </p>

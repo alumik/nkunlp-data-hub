@@ -12,7 +12,7 @@ $this->title = Yii::$app->name;
 
     <div class="jumbotron">
         <?= Html::img('@web/nankai-logo.svg', ['alt' => '南开大学', 'style' => 'height: 108px;']); ?>
-        <h1>南开大学 NLP 数据管理中心</h1>
+        <h1>南开软院语料管理平台</h1>
         <p class="lead" id="hitokoto-text"></p>
         <hr/>
         <p id="hitokoto"></p>

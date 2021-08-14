@@ -127,7 +127,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Html::a(Yii::$app->name . date(' Y'), ['/site/about']); ?></p>
+        <p class="pull-left">&copy; <?= Yii::$app->name . date(' Y'); ?></p>
     </div>
 </footer>
 

@@ -22,7 +22,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['login', 'about', 'error'],
+                        'actions' => ['login', 'error'],
                         'allow' => true,
                     ],
                 ],
@@ -77,10 +77,5 @@ class SiteController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
-    }
-
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 }
