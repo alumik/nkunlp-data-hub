@@ -3,14 +3,14 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\ServerMgmt;
-use app\models\ServerMgmtSearch;
+use app\models\DriveMgmt;
+use app\models\DriveMgmtSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-class ServerMgmtController extends Controller
+class DriveController extends Controller
 {
     public function behaviors()
     {
@@ -35,7 +35,7 @@ class ServerMgmtController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new ServerMgmtSearch();
+        $searchModel = new DriveMgmtSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -53,7 +53,7 @@ class ServerMgmtController extends Controller
 
     public function actionCreate()
     {
-        $model = new ServerMgmt();
+        $model = new DriveMgmt();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -86,7 +86,7 @@ class ServerMgmtController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = ServerMgmt::findOne($id)) !== null) {
+        if (($model = DriveMgmt::findOne($id)) !== null) {
             return $model;
         }
 

@@ -5,8 +5,8 @@ use yii\helpers\Html;
 
 /** @var array $progress */
 
-$this->title = '各项任务进度';
-$this->params['breadcrumbs'][] = '信息查询';
+$this->title = '各阶段进度';
+$this->params['breadcrumbs'][] = '信息中心';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -21,17 +21,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     <h3 class="panel-title">数据下载</h3>
                 </div>
                 <div class="panel-body">
-                    <?php $dataDownloadProgress = $progress['dataDownload']['finished'] / $progress['dataDownload']['all'] * 100; ?>
+                    <?php $dataDownloadProgress =
+                        $progress['dataDownload']['finished'] / $progress['dataDownload']['all'] * 100; ?>
                     <p>
-                        <strong>进度：</strong><?= $progress['dataDownload']['finished'] . '/' . $progress['dataDownload']['all'] . ' (' . number_format($dataDownloadProgress, 2) . '%).'; ?>
+                        <strong>进度：</strong>
+                        <?= $progress['dataDownload']['finished'] . '/' . $progress['dataDownload']['all']; ?>
                     </p>
                     <p>
                         <?= Progress::widget([
                             'percent' => $dataDownloadProgress,
+                            'label' => number_format($dataDownloadProgress, 2) . '%',
                         ]); ?>
                     </p>
                     <p>
-                        <?= Html::a('任务列表 &raquo;', ['/data-download/index'], ['class' => 'btn btn-default']); ?>
+                        <?= Html::a(
+                            '任务列表 &raquo;',
+                            ['/data-download/index'],
+                            ['class' => 'btn btn-default']
+                        ); ?>
                     </p>
                 </div>
             </div>
@@ -42,20 +49,32 @@ $this->params['breadcrumbs'][] = $this->title;
                     <h3 class="panel-title">中文提取</h3>
                 </div>
                 <div class="panel-body">
-                    <?php $chineseExtractionProgress = $progress['chineseExtraction']['finished'] / $progress['chineseExtraction']['all'] * 100; ?>
+                    <?php $chineseExtractionProgress =
+                        $progress['chineseExtraction']['finished'] / $progress['chineseExtraction']['all'] * 100; ?>
                     <p>
-                        <strong>进度：</strong><?= $progress['chineseExtraction']['finished'] . '/' . $progress['chineseExtraction']['all'] . ' (' . number_format($chineseExtractionProgress, 2) . '%).'; ?>
+                        <strong>进度：</strong>
+                        <?= $progress['chineseExtraction']['finished'] . '/' . $progress['chineseExtraction']['all']; ?>
                     </p>
                     <p>
                         <?= Progress::widget([
                             'bars' => [
-                                ['percent' => $chineseExtractionProgress],
-                                ['percent' => $dataDownloadProgress - $chineseExtractionProgress, 'options' => ['class' => 'progress-bar-warning']],
+                                [
+                                    'percent' => $chineseExtractionProgress,
+                                    'label' => number_format($chineseExtractionProgress, 2) . '%',
+                                ],
+                                [
+                                    'percent' => $dataDownloadProgress - $chineseExtractionProgress,
+                                    'options' => ['class' => 'progress-bar-warning']
+                                ],
                             ],
                         ]); ?>
                     </p>
                     <p>
-                        <?= Html::a('任务列表 &raquo;', ['/chinese-extraction/index'], ['class' => 'btn btn-default']); ?>
+                        <?= Html::a(
+                            '任务列表 &raquo;',
+                            ['/chinese-extraction/index'],
+                            ['class' => 'btn btn-default']
+                        ); ?>
                     </p>
                 </div>
             </div>
@@ -69,20 +88,32 @@ $this->params['breadcrumbs'][] = $this->title;
                     <h3 class="panel-title">正则清洗</h3>
                 </div>
                 <div class="panel-body">
-                    <?php $filterProgress = $progress['filter']['finished'] / $progress['filter']['all'] * 100; ?>
+                    <?php $filterProgress =
+                        $progress['filter']['finished'] / $progress['filter']['all'] * 100; ?>
                     <p>
-                        <strong>进度：</strong><?= $progress['filter']['finished'] . '/' . $progress['filter']['all'] . ' (' . number_format($filterProgress, 2) . '%).'; ?>
+                        <strong>进度：</strong>
+                        <?= $progress['filter']['finished'] . '/' . $progress['filter']['all']; ?>
                     </p>
                     <p>
                         <?= Progress::widget([
                             'bars' => [
-                                ['percent' => $filterProgress],
-                                ['percent' => $chineseExtractionProgress - $filterProgress, 'options' => ['class' => 'progress-bar-warning']],
+                                [
+                                    'percent' => $filterProgress,
+                                    'label' => number_format($filterProgress, 2) . '%',
+                                ],
+                                [
+                                    'percent' => $chineseExtractionProgress - $filterProgress,
+                                    'options' => ['class' => 'progress-bar-warning']
+                                ],
                             ],
                         ]); ?>
                     </p>
                     <p>
-                        <?= Html::a('任务状态 &raquo;', ['/filter/state'], ['class' => 'btn btn-default']); ?>
+                        <?= Html::a(
+                            '任务状态 &raquo;',
+                            ['/filter/state'],
+                            ['class' => 'btn btn-default']
+                        ); ?>
                     </p>
                 </div>
             </div>

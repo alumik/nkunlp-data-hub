@@ -3,14 +3,14 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\DeviceMgmt;
-use app\models\DeviceMgmtSearch;
+use app\models\ServerMgmt;
+use app\models\ServerMgmtSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-class DeviceMgmtController extends Controller
+class ServerController extends Controller
 {
     public function behaviors()
     {
@@ -25,7 +25,7 @@ class DeviceMgmtController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -35,7 +35,7 @@ class DeviceMgmtController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new DeviceMgmtSearch();
+        $searchModel = new ServerMgmtSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -44,12 +44,19 @@ class DeviceMgmtController extends Controller
         ]);
     }
 
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
     public function actionCreate()
     {
-        $model = new DeviceMgmt();
+        $model = new ServerMgmt();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -79,7 +86,7 @@ class DeviceMgmtController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = DeviceMgmt::findOne($id)) !== null) {
+        if (($model = ServerMgmt::findOne($id)) !== null) {
             return $model;
         }
 

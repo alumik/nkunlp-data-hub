@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /** @var app\models\ServerMgmt $model */
 
 $this->title = $model->server;
-$this->params['breadcrumbs'][] = '信息管理';
+$this->params['breadcrumbs'][] = '信息中心';
 $this->params['breadcrumbs'][] = ['label' => '服务器管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);

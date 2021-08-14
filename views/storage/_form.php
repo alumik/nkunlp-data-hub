@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
  */
 ?>
 
-<div class="device-mgmt-form">
+<div class="storage-mgmt-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

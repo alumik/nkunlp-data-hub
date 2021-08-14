@@ -6,8 +6,8 @@ use yii\grid\GridView;
 
 /** @var SqlDataProvider $dataProvider */
 
-$this->title = '归档月份和数据编码对照表';
-$this->params['breadcrumbs'][] = '信息查询';
+$this->title = '月份编码对照表';
+$this->params['breadcrumbs'][] = '信息中心';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

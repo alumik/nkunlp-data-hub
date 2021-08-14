@@ -14,8 +14,6 @@ class DriveMgmt extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'quantity'], 'required'],
-            ['quantity', 'integer', 'min' => 1],
             [['location', 'notes'], 'string'],
             [['updated_at'], 'safe'],
         ];
@@ -26,7 +24,6 @@ class DriveMgmt extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => '编号',
-            'quantity' => '数量',
             'location' => '位置',
             'notes' => '备注',
             'updated_at' => '修改时间',

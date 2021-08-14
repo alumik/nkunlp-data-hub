@@ -3,14 +3,14 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\DriveMgmt;
-use app\models\DriveMgmtSearch;
+use app\models\DeviceMgmt;
+use app\models\DeviceMgmtSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-class DriveMgmtController extends Controller
+class StorageController extends Controller
 {
     public function behaviors()
     {
@@ -25,7 +25,7 @@ class DriveMgmtController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::class,
+                'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -35,7 +35,7 @@ class DriveMgmtController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new DriveMgmtSearch();
+        $searchModel = new DeviceMgmtSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -44,19 +44,12 @@ class DriveMgmtController extends Controller
         ]);
     }
 
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
     public function actionCreate()
     {
-        $model = new DriveMgmt();
+        $model = new DeviceMgmt();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -86,7 +79,7 @@ class DriveMgmtController extends Controller
 
     protected function findModel($id)
     {
-        if (($model = DriveMgmt::findOne($id)) !== null) {
+        if (($model = DeviceMgmt::findOne($id)) !== null) {
             return $model;
         }
 

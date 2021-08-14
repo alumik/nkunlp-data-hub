@@ -9,7 +9,7 @@ use yii\grid\GridView;
  */
 
 $this->title = '服务器管理';
-$this->params['breadcrumbs'][] = '信息管理';
+$this->params['breadcrumbs'][] = '信息中心';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

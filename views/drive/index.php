@@ -10,7 +10,7 @@ use app\models\DriveMgmt;
  */
 
 $this->title = '硬盘管理';
-$this->params['breadcrumbs'][] = '信息管理';
+$this->params['breadcrumbs'][] = '信息中心';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'showFooter' => true,
         'columns' => [
             [
                 'class' => 'yii\grid\SerialColumn',
@@ -33,10 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             'name',
-            [
-                'attribute' => 'quantity',
-                'footer' => DriveMgmt::getTotal($dataProvider->models, 'quantity'),
-            ],
             'location:ntext',
             'notes:ntext',
             'updated_at',

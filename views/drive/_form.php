@@ -15,8 +15,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]); ?>
 
-    <?= $form->field($model, 'quantity')->textInput(['type' => 'number', 'min' => 1]); ?>
-
     <?= $form->field($model, 'location')->textarea(['rows' => 6]); ?>
 
     <?= $form->field($model, 'notes')->textarea(['rows' => 6]); ?>
