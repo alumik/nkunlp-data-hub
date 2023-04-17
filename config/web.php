@@ -44,8 +44,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => require __DIR__ . '/db-nkunlp-preprocessing.php',
-        'dbCommonCrawl' => require __DIR__ . '/db-common-crawl.php',
+        'db' => require __DIR__ . '/db.php',
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
