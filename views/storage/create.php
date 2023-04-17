@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 $this->title = '新增数据存储信息';
 $this->params['breadcrumbs'][] = '信息管理';
-$this->params['breadcrumbs'][] = ['label' => '数据存储管理', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Common Crawl 存储管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

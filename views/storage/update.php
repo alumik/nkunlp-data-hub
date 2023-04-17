@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 $this->title = '修改数据存储信息: ' . $model->name;
 $this->params['breadcrumbs'][] = '信息管理';
-$this->params['breadcrumbs'][] = ['label' => '数据存储管理', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Common Crawl 存储管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $model->id;
 $this->params['breadcrumbs'][] = '修改';
 ?>

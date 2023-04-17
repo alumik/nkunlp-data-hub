@@ -9,7 +9,7 @@ use app\models\DriveMgmt;
  * @var yii\data\ActiveDataProvider $dataProvider
  */
 
-$this->title = '硬盘管理';
+$this->title = '其他存储管理';
 $this->params['breadcrumbs'][] = '信息中心';
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 $this->title = '新增硬盘信息';
 $this->params['breadcrumbs'][] = '信息中心';
-$this->params['breadcrumbs'][] = ['label' => '硬盘管理', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '其他存储管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

@@ -14,7 +14,7 @@ class DriveMgmt extends ActiveRecord
     public function rules()
     {
         return [
-            [['location', 'notes'], 'string'],
+            [['name', 'location', 'notes'], 'string'],
             [['updated_at'], 'safe'],
         ];
     }

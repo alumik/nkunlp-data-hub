@@ -8,7 +8,7 @@ use yii\grid\GridView;
  * @var yii\data\ActiveDataProvider $dataProvider
  */
 
-$this->title = '数据存储管理';
+$this->title = 'Common Crawl 存储管理';
 $this->params['breadcrumbs'][] = '信息管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
