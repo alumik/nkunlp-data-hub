@@ -5,12 +5,15 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
-class DriveSearch extends Drive
+class CcDataSearch extends CcData
 {
+    public $yearMonthStr;
+
     public function rules(): array
     {
         return [
-            [['name', 'location', 'description'], 'safe'],
+            [['uri'], 'safe'],
+            [['yearMonthStr'], 'safe'],
         ];
     }
 
@@ -21,17 +24,14 @@ class DriveSearch extends Drive
 
     public function search($params): ActiveDataProvider
     {
-        $query = Drive::find();
+        $query = CcData::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 100,
-            ],
         ]);
-        $dataProvider->sort->attributes['updatedAtFormatted'] = [
-            'asc' => ['updated_at' => SORT_ASC],
-            'desc' => ['updated_at' => SORT_DESC],
+        $dataProvider->sort->attributes['yearMonthStr'] = [
+            'asc' => ['year_month.year' => SORT_ASC, 'year_month.month' => SORT_ASC, 'id' => SORT_ASC],
+            'desc' => ['year_month.year' => SORT_DESC, 'year_month.month' => SORT_DESC, 'id' => SORT_DESC],
         ];
 
         $this->load($params);
@@ -42,9 +42,10 @@ class DriveSearch extends Drive
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'location', $this->location])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'uri', $this->uri]);
+        $query->leftJoin('year_month', 'cc_data.id_year_month = year_month.id');
+        $query->andFilterWhere(['like', 'CONCAT(year_month.year, "-", year_month.month)', $this->yearMonthStr]);
+
 
         return $dataProvider;
     }
