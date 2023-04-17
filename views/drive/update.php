@@ -2,21 +2,20 @@
 
 use yii\helpers\Html;
 
-/** @var app\models\DriveMgmt $model */
+/* @var $this yii\web\View */
+/* @var $model app\models\Drive */
 
-$this->title = '修改: ' . $model->name;
-$this->params['breadcrumbs'][] = '信息中心';
-$this->params['breadcrumbs'][] = ['label' => '其他存储管理', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = '修改';
+$this->title = '更新存储设备：' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => '存储设备', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = '更新';
 ?>
+<div class="drive-update">
 
-<div class="drive-mgmt">
-
-    <h1><?= Html::encode($this->title); ?></h1>
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
-    ]); ?>
+    ]) ?>
 
 </div>

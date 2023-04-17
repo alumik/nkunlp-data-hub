@@ -3,16 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\DriveMgmt;
-use app\models\DriveMgmtSearch;
+use app\models\Drive;
+use app\models\DriveSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 class DriveController extends Controller
 {
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'access' => [
@@ -33,9 +34,9 @@ class DriveController extends Controller
         ];
     }
 
-    public function actionIndex()
+    public function actionIndex(): string
     {
-        $searchModel = new DriveMgmtSearch();
+        $searchModel = new DriveSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -44,7 +45,7 @@ class DriveController extends Controller
         ]);
     }
 
-    public function actionView($id)
+    public function actionView($id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -53,7 +54,7 @@ class DriveController extends Controller
 
     public function actionCreate()
     {
-        $model = new DriveMgmt();
+        $model = new Drive();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -69,7 +70,7 @@ class DriveController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -77,19 +78,19 @@ class DriveController extends Controller
         ]);
     }
 
-    public function actionDelete($id)
+    public function actionDelete($id): Response
     {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
-    protected function findModel($id)
+    protected function findModel($id): ?Drive
     {
-        if (($model = DriveMgmt::findOne($id)) !== null) {
+        if (($model = Drive::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('你请求的页面不存在。');
     }
 }
