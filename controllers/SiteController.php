@@ -8,10 +8,11 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use app\models\ServerMgmtSearch;
+use yii\web\Response;
 
 class SiteController extends Controller
 {
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'access' => [
@@ -36,7 +37,7 @@ class SiteController extends Controller
         ];
     }
 
-    public function actions()
+    public function actions(): array
     {
         return [
             'error' => [
@@ -62,20 +63,16 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionLogout()
+    public function actionLogout(): Response
     {
         Yii::$app->user->logout();
 
         return $this->goHome();
     }
 
-    public function actionIndex()
+    public function actionIndex(): string
     {
-        $searchModel = new ServerMgmtSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('index');
     }
 }

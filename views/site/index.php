@@ -1,9 +1,6 @@
 <?php
 
-use yii\grid\GridView;
-use yii\helpers\Html;
-
-/** @var yii\data\ActiveDataProvider $dataProvider */
+use yii\bootstrap\Html;
 
 $this->title = Yii::$app->name;
 ?>
@@ -19,17 +16,7 @@ $this->title = Yii::$app->name;
     </div>
 
     <div class="body-content">
-        <?= GridView::widget([
-            'summary' => false,
-            'dataProvider' => $dataProvider,
-            'columns' => [
-                'server',
-                'device',
-                'task',
-                'notes:ntext',
-                'updated_at',
-            ],
-        ]); ?>
+
     </div>
 
 </div>

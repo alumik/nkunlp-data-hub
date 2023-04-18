@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\CommonCrawlDataSearch;
+use app\models\CCDataSearch;
 use Yii;
 use yii\data\ArrayDataProvider;
 use yii\data\SqlDataProvider;
@@ -28,7 +28,7 @@ class DataDownloadController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new CommonCrawlDataSearch();
+        $searchModel = new CCDataSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

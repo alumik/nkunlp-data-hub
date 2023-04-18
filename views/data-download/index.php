@@ -1,12 +1,12 @@
 <?php
 
-use app\models\CommonCrawlData;
+use app\models\CCData;
 use app\models\CommonCrawlWorker;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
 /**
- * @var app\models\CommonCrawlDataSearch $searchModel
+ * @var app\models\CCDataSearch $searchModel
  * @var yii\data\ActiveDataProvider $dataProvider
  */
 
@@ -45,14 +45,14 @@ $this->params['breadcrumbs'][] = '数据下载';
                 'value' => function ($model) {
                     return $model->processStateText();
                 },
-                'filter' => CommonCrawlData::$processStateDict,
+                'filter' => CCData::$processStateDict,
             ],
             [
                 'attribute' => 'download_state',
                 'value' => function ($model) {
                     return $model->downloadStateText();
                 },
-                'filter' => CommonCrawlData::$downloadStateDict,
+                'filter' => CCData::$downloadStateDict,
             ],
             [
                 'attribute' => 'id_worker',

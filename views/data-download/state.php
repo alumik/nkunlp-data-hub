@@ -1,6 +1,6 @@
 <?php
 
-use app\models\CommonCrawlData;
+use app\models\CCData;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'downloadState',
                 'label' => '任务状态',
                 'value' => function ($model) {
-                    return CommonCrawlData::$downloadStateDict[strval($model['downloadState'])];
+                    return CCData::$downloadStateDict[strval($model['downloadState'])];
                 },
             ],
             [

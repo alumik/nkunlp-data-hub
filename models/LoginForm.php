@@ -13,7 +13,7 @@ class LoginForm extends Model
 
     private $_user = false;
 
-    public function rules()
+    public function rules(): array
     {
         return [
             // username and password are both required
@@ -25,7 +25,7 @@ class LoginForm extends Model
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'username' => '用户名',
@@ -45,7 +45,7 @@ class LoginForm extends Model
         }
     }
 
-    public function login()
+    public function login(): bool
     {
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
@@ -53,7 +53,7 @@ class LoginForm extends Model
         return false;
     }
 
-    public function getUser()
+    public function getUser(): ?User
     {
         if ($this->_user === false) {
             $this->_user = User::findByUsername($this->username);

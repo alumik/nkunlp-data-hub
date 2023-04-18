@@ -49,7 +49,7 @@ class User extends BaseObject implements IdentityInterface
         return null;
     }
 
-    public static function findByUsername($username)
+    public static function findByUsername($username): ?User
     {
         foreach (self::$users as $user) {
             if (strcasecmp($user['username'], $username) === 0) {
@@ -65,17 +65,17 @@ class User extends BaseObject implements IdentityInterface
         return $this->id;
     }
 
-    public function getAuthKey()
+    public function getAuthKey(): ?string
     {
         return $this->authKey;
     }
 
-    public function validateAuthKey($authKey)
+    public function validateAuthKey($authKey): bool
     {
         return $this->authKey === $authKey;
     }
 
-    public function validatePassword($password)
+    public function validatePassword($password): bool
     {
         return $this->password === $password;
     }

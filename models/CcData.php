@@ -27,7 +27,13 @@ class CcData extends ActiveRecord
             [['uri'], 'required'],
             [['id_year_month'], 'integer'],
             [['uri'], 'string', 'max' => 1023],
-            [['id_year_month'], 'exist', 'skipOnError' => true, 'targetClass' => YearMonth::class, 'targetAttribute' => ['id_year_month' => 'id']],
+            [
+                ['id_year_month'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => YearMonth::class,
+                'targetAttribute' => ['id_year_month' => 'id']
+            ],
         ];
     }
 
