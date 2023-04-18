@@ -54,6 +54,9 @@ class CcData extends ActiveRecord
 
     public function getYearMonthStr(): string
     {
+        if ($this->yearMonth->year === 'N/A' || $this->yearMonth->month === 'N/A') {
+            return 'N/A';
+        }
         return $this->yearMonth->year . '-' . $this->yearMonth->month;
     }
 

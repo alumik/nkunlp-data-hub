@@ -35,30 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">月份编码</h3>
-                </div>
-                <div class="panel-body">
-                    <p>
-                        查看月份与 Common Crawl 编码的对应关系。
-                    </p>
-                    <p>
-                        <?= Html::a(
-                            '前往 &raquo;',
-                            ['/info/year-month'],
-                            ['class' => 'btn btn-default']
-                        ); ?>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
                     <h3 class="panel-title">Common Crawl 文件列表</h3>
                 </div>
                 <div class="panel-body">
                     <p>
-                        查看所有待处理 Common Crawl 数据的列表。
+                        查看所有待处理 Common Crawl 数据列表。
                     </p>
                     <p>
                         <?= Html::a(
@@ -70,11 +51,49 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">本地文件列表</h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        查看存储在本地设备中的文件列表。
+                    </p>
+                    <p>
+                        <?= Html::a(
+                            '前往 &raquo;',
+                            ['/info/cc-storage'],
+                            ['class' => 'btn btn-default']
+                        ); ?>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <h2>信息管理</h2>
 
     <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">月份编码</h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        查看并管理月份与 Common Crawl 编码的关系。
+                    </p>
+                    <p>
+                        <?= Html::a(
+                            '前往 &raquo;',
+                            ['/info/year-month'],
+                            ['class' => 'btn btn-default']
+                        ); ?>
+                    </p>
+                </div>
+            </div>
+        </div>
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading">

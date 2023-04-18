@@ -23,7 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'uri',
             'yearMonthStr',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+            ],
         ],
     ]); ?>
 

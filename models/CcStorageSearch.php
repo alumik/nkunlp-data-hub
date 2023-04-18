@@ -4,45 +4,27 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\CcStorage;
 
-/**
- * CcStorageSearch represents the model behind the search form of `app\models\CcStorage`.
- */
 class CcStorageSearch extends CcStorage
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+    public $driveName;
+    public $yearMonthStr;
+
+    public function rules(): array
     {
         return [
-            [['id', 'id_drive', 'id_year_month', 'size'], 'integer'],
-            [['prefix', 'path'], 'safe'],
+            [['driveName', 'prefix', 'path', 'yearMonthStr'], 'safe'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function scenarios()
+    public function scenarios(): array
     {
-        // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
-    public function search($params)
+    public function search($params): ActiveDataProvider
     {
         $query = CcStorage::find();
-
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -55,17 +37,21 @@ class CcStorageSearch extends CcStorage
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'id_drive' => $this->id_drive,
-            'id_year_month' => $this->id_year_month,
-            'size' => $this->size,
-        ]);
+        $dataProvider->sort->attributes['driveName'] = [
+            'asc' => ['drive.name' => SORT_ASC, 'id' => SORT_ASC],
+            'desc' => ['drive.name' => SORT_DESC, 'id' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['yearMonthStr'] = [
+            'asc' => ['year_month.year' => SORT_ASC, 'year_month.month' => SORT_ASC, 'id' => SORT_ASC],
+            'desc' => ['year_month.year' => SORT_DESC, 'year_month.month' => SORT_DESC, 'id' => SORT_DESC],
+        ];
 
         $query->andFilterWhere(['like', 'prefix', $this->prefix])
             ->andFilterWhere(['like', 'path', $this->path]);
+        $query->leftJoin('drive', 'cc_storage.id_drive = drive.id');
+        $query->andFilterWhere(['like', 'drive.name', $this->driveName]);
+        $query->leftJoin('year_month', 'cc_storage.id_year_month = year_month.id');
+        $query->andFilterWhere(['like', 'CONCAT(year_month.year, "-", year_month.month)', $this->yearMonthStr]);
 
         return $dataProvider;
     }

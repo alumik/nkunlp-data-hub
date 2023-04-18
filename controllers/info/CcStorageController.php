@@ -2,14 +2,14 @@
 
 namespace app\controllers\info;
 
-use app\models\CcData;
-use app\models\CcDataSearch;
+use app\models\CcStorage;
+use app\models\CcStorageSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class CcDataController extends Controller
+class CcStorageController extends Controller
 {
     public function behaviors(): array
     {
@@ -28,7 +28,7 @@ class CcDataController extends Controller
 
     public function actionIndex(): string
     {
-        $searchModel = new CcDataSearch();
+        $searchModel = new CcStorageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -44,9 +44,9 @@ class CcDataController extends Controller
         ]);
     }
 
-    protected function findModel($id): ?CcData
+    protected function findModel($id): ?CcStorage
     {
-        if (($model = CcData::findOne($id)) !== null) {
+        if (($model = CcStorage::findOne($id)) !== null) {
             return $model;
         }
 

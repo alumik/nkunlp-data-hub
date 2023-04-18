@@ -7,35 +7,33 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\CcStorageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cc Storages';
+$this->title = '本地文件列表';
+$this->params['breadcrumbs'][] = ['label' => '信息中心', 'url' => ['/info']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cc-storage-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Cc Storage', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
-            'id_drive',
-            'id_year_month',
+            [
+                'attribute' => 'driveName',
+                'value' => 'drive.name',
+            ],
+            'yearMonthStr',
             'prefix',
             'path',
-            //'size',
+            'size',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+            ],
         ],
     ]); ?>
-
 
 </div>

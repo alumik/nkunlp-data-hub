@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>
                         <?= Html::a(
                             '任务列表 &raquo;',
-                            ['/cc-download'],
+                            ['/cc-download/task'],
                             ['class' => 'btn btn-default']
                         ); ?>
                     </p>
@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>
                         <?= Html::a(
                             '任务列表 &raquo;',
-                            ['/cc-chinese-extraction'],
+                            ['/cc-chinese-extraction/task'],
                             ['class' => 'btn btn-default']
                         ); ?>
                     </p>
@@ -110,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>
                         <?= Html::a(
                             '任务列表 &raquo;',
-                            ['/cc-filtering'],
+                            ['/cc-filtering/task'],
                             ['class' => 'btn btn-default']
                         ); ?>
                     </p>
@@ -143,7 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--                    <p>-->
 <!--                        --><?php //= Html::a(
 //                            '任务列表 &raquo;',
-//                            ['/cc-deduplication'],
+//                            ['/cc-deduplication/task'],
 //                            ['class' => 'btn btn-default']
 //                        ); ?>
 <!--                    </p>-->
