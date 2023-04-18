@@ -16,7 +16,24 @@ $this->title = Yii::$app->name;
     </div>
 
     <div class="body-content">
-
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">信息中心</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <?= Html::a(
+                                '前往 &raquo;',
+                                ['/info'],
+                                ['class' => 'btn btn-default']
+                            ); ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
