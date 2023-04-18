@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\YearMonthSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '月份编码';
+$this->title = '归档月份编码';
 $this->params['breadcrumbs'][] = ['label' => '信息中心', 'url' => ['/info']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('新建月份编码', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('新建归档月份编码', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

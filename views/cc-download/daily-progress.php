@@ -7,11 +7,11 @@ use yii\grid\GridView;
 /** @var SqlDataProvider $dataProvider */
 
 $this->title = '每日下载进度';
-$this->params['breadcrumbs'][] = ['label' => '数据下载', 'url' => 'index'];
+$this->params['breadcrumbs'][] = ['label' => '数据下载', 'url' => '/cc-download'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="data-download">
+<div class="cc-download-daily-progress">
 
     <h1><?= Html::encode($this->title); ?></h1>
 
@@ -32,15 +32,21 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'finishedJobs',
-                'label' => '任务数量',
+                'label' => '已完成任务数量',
             ],
             [
-                'attribute' => 'traffic',
-                'label' => '下载流量',
+                'attribute' => 'finishedDownloadSize',
+                'label' => '已下载数据大小',
+                'value' => function ($model) {
+                    return Yii::$app->formatter->asShortSize($model['finishedDownloadSize'], 2);
+                },
             ],
             [
-                'attribute' => 'avgSpeed',
+                'attribute' => 'averageDownloadSpeed',
                 'label' => '平均下载速率',
+                'value' => function ($model) {
+                    return Yii::$app->formatter->asShortSize($model['averageDownloadSpeed'], 2) . '/s';
+                },
             ],
         ],
     ]); ?>

@@ -57,12 +57,12 @@ class CcStorage extends ActiveRecord
         return [
             'id' => 'ID',
             'id_drive' => '存储设备 ID',
-            'id_year_month' => '月份 ID',
+            'id_year_month' => '归档月份 ID',
             'prefix' => '命名空间',
             'path' => '路径',
             'size' => '大小',
             'driveName' => '存储设备',
-            'yearMonthStr' => '月份',
+            'yearMonthStr' => '归档月份',
         ];
     }
 

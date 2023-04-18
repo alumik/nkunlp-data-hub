@@ -62,7 +62,7 @@ AppAsset::register($this);
                     ['label' => '本地文件列表', 'url' => '/info/cc-storage'],
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">信息管理</li>',
-                    ['label' => '月份编码', 'url' => '/info/year-month'],
+                    ['label' => '归档月份编码', 'url' => '/info/year-month'],
                     ['label' => '存储设备', 'url' => '/info/drive'],
                 ],
                 'visible' => !Yii::$app->user->isGuest,

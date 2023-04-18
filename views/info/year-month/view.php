@@ -9,7 +9,7 @@ use yii\widgets\DetailView;
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => '信息中心', 'url' => ['/info']];
-$this->params['breadcrumbs'][] = ['label' => '月份编码', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '归档月份编码', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 YiiAsset::register($this);
 ?>

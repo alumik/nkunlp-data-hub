@@ -12,7 +12,7 @@ use yii\db\ActiveRecord;
  * @property string|null $location
  * @property string|null $description
  * @property int $updated_at
- * @property string $updated_at_formatted
+ * @property string $updatedAtFormatted
  *
  * @property CcStorage[] $ccStorages
  */

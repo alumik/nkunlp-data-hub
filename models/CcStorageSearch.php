@@ -13,6 +13,7 @@ class CcStorageSearch extends CcStorage
     public function rules(): array
     {
         return [
+            [['id'], 'integer'],
             [['driveName', 'prefix', 'path', 'yearMonthStr'], 'safe'],
         ];
     }
@@ -46,11 +47,14 @@ class CcStorageSearch extends CcStorage
             'desc' => ['year_month.year' => SORT_DESC, 'year_month.month' => SORT_DESC, 'id' => SORT_DESC],
         ];
 
+        $query->andFilterWhere([
+            'id' => $this->id,
+        ]);
         $query->andFilterWhere(['like', 'prefix', $this->prefix])
             ->andFilterWhere(['like', 'path', $this->path]);
-        $query->leftJoin('drive', 'cc_storage.id_drive = drive.id');
+        $query->leftJoin(Drive::tableName(), 'cc_storage.id_drive = drive.id');
+        $query->leftJoin(YearMonth::tableName(), 'cc_storage.id_year_month = year_month.id');
         $query->andFilterWhere(['like', 'drive.name', $this->driveName]);
-        $query->leftJoin('year_month', 'cc_storage.id_year_month = year_month.id');
         $query->andFilterWhere(['like', 'CONCAT(year_month.year, "-", year_month.month)', $this->yearMonthStr]);
 
         return $dataProvider;

@@ -1,69 +1,61 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\DetailView;
 
-$this->title = '信息中心';
+/* @var $model array */
+
+$this->title = '数据下载';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="info-index">
+<div class="cc-download-index">
 
     <h1><?= Html::encode($this->title); ?></h1>
 
-    <h2>信息查询</h2>
+    <?=
+    DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            [
+                'attribute' => 'pending_jobs',
+                'label' => '未完成任务数量',
+            ],
+            [
+                'attribute' => 'finished_jobs',
+                'label' => '已完成任务数量',
+            ],
+            [
+                'label' => '已下载数据大小',
+                'value' => function ($model) {
+                    return Yii::$app->formatter->asShortSize($model['finished_download_size'], 2);
+                },
+            ],
+            [
+                'label' => '已存储数据大小',
+                'value' => function ($model) {
+                    return Yii::$app->formatter->asShortSize($model['finished_storage_size'], 2);
+                },
+            ],
+        ],
+    ]); ?>
+
+    <h2>任务</h2>
 
     <div class="row">
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">各阶段进度</h3>
+                    <h3 class="panel-title">任务列表</h3>
                 </div>
                 <div class="panel-body">
                     <p>
-                        查看 Common Crawl 数据处理各阶段的完成进度。
+                        查看进行中和已完成的数据下载任务。
                     </p>
                     <p>
                         <?= Html::a(
                             '前往 &raquo;',
-                            ['/info/progress'],
-                            ['class' => 'btn btn-default']
-                        ); ?>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Common Crawl 文件列表</h3>
-                </div>
-                <div class="panel-body">
-                    <p>
-                        查看所有待处理 Common Crawl 数据列表。
-                    </p>
-                    <p>
-                        <?= Html::a(
-                            '前往 &raquo;',
-                            ['/info/cc-data'],
-                            ['class' => 'btn btn-default']
-                        ); ?>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">本地文件列表</h3>
-                </div>
-                <div class="panel-body">
-                    <p>
-                        查看存储在本地设备中的文件列表。
-                    </p>
-                    <p>
-                        <?= Html::a(
-                            '前往 &raquo;',
-                            ['/info/cc-storage'],
+                            ['/cc-download/task'],
                             ['class' => 'btn btn-default']
                         ); ?>
                     </p>
@@ -72,22 +64,22 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <h2>信息管理</h2>
+    <h2>进度</h2>
 
     <div class="row">
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">归档月份编码</h3>
+                    <h3 class="panel-title">存储情况</h3>
                 </div>
                 <div class="panel-body">
                     <p>
-                        查看并管理归档月份与 Common Crawl 编码。
+                        查看数据下载下载文件存储的相关统计。
                     </p>
                     <p>
                         <?= Html::a(
                             '前往 &raquo;',
-                            ['/info/year-month'],
+                            ['/cc-download/storage'],
                             ['class' => 'btn btn-default']
                         ); ?>
                     </p>
@@ -97,16 +89,35 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">存储设备</h3>
+                    <h3 class="panel-title">每日下载进度</h3>
                 </div>
                 <div class="panel-body">
                     <p>
-                        查看并管理存储设备信息。
+                        查看每日的下载进度。
                     </p>
                     <p>
                         <?= Html::a(
                             '前往 &raquo;',
-                            ['/info/drive'],
+                            ['/cc-download/daily-progress'],
+                            ['class' => 'btn btn-default']
+                        ); ?>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">各归档月份下载进度</h3>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        查看各个 Common Crawl 归档月份的下载进度。
+                    </p>
+                    <p>
+                        <?= Html::a(
+                            '前往 &raquo;',
+                            ['/cc-download/year-month-progress'],
                             ['class' => 'btn btn-default']
                         ); ?>
                     </p>

@@ -42,8 +42,8 @@ class CcData extends ActiveRecord
         return [
             'id' => 'ID',
             'uri' => 'URI',
-            'id_year_month' => '月份 ID',
-            'yearMonthStr' => '月份',
+            'id_year_month' => '归档月份 ID',
+            'yearMonthStr' => '归档月份',
         ];
     }
 

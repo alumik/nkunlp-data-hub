@@ -15,7 +15,6 @@ use Yii;
  *
  * @property CcChineseExtraction $ccChineseExtraction
  * @property CcStorage $storage
- * @property CcFilteringFilter[] $ccFilteringFilters
  * @property CcFilter[] $ccFilters
  */
 class CcFiltering extends \yii\db\ActiveRecord
@@ -78,16 +77,6 @@ class CcFiltering extends \yii\db\ActiveRecord
     public function getStorage()
     {
         return $this->hasOne(CcStorage::className(), ['id' => 'id_storage']);
-    }
-
-    /**
-     * Gets query for [[CcFilteringFilters]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCcFilteringFilters()
-    {
-        return $this->hasMany(CcFilteringFilter::className(), ['id_cc_filtering' => 'id']);
     }
 
     /**

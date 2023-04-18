@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = ['label' => '信息中心', 'url' => ['/info']]
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="info">
+<div class="progress-index">
 
     <h1><?= Html::encode($this->title); ?></h1>
 

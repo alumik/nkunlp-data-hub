@@ -33,6 +33,38 @@ $this->title = Yii::$app->name;
                     </div>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">数据下载</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <?= Html::a(
+                                '前往 &raquo;',
+                                ['/cc-download'],
+                                ['class' => 'btn btn-default']
+                            ); ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">中文提取</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <?= Html::a(
+                                '前往 &raquo;',
+                                ['/cc-chinese-extraction'],
+                                ['class' => 'btn btn-default']
+                            ); ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

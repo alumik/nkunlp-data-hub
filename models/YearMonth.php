@@ -35,8 +35,8 @@ class YearMonth extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'year' => '年份',
-            'month' => '月份',
+            'year' => '归档年份',
+            'month' => '归档月份',
             'cc_code' => 'Common Crawl 编码',
         ];
     }
