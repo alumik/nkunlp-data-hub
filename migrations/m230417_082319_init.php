@@ -53,16 +53,16 @@ class m230417_082319_init extends Migration
             'id' => $this->primaryKey(),
             'id_cc_data' => $this->integer()->notNull(),
             'id_storage' => $this->integer(),
-            'started_at' => $this->dateTime(),
-            'finished_at' => $this->dateTime(),
+            'started_at' => $this->integer(),
+            'finished_at' => $this->integer(),
         ]);
 
         $this->createTable('cc_chinese_extraction', [
             'id' => $this->primaryKey(),
             'id_cc_download' => $this->integer()->notNull(),
             'id_storage' => $this->integer(),
-            'started_at' => $this->dateTime(),
-            'finished_at' => $this->dateTime(),
+            'started_at' => $this->integer(),
+            'finished_at' => $this->integer(),
         ]);
 
         $this->createTable('cc_filter', [
@@ -75,8 +75,8 @@ class m230417_082319_init extends Migration
             'id' => $this->primaryKey(),
             'id_cc_chinese_extraction' => $this->integer()->notNull(),
             'id_storage' => $this->integer(),
-            'started_at' => $this->dateTime(),
-            'finished_at' => $this->dateTime(),
+            'started_at' => $this->integer(),
+            'finished_at' => $this->integer(),
         ]);
 
         $this->createTable('cc_filtering_filter', [
@@ -89,8 +89,8 @@ class m230417_082319_init extends Migration
             'id' => $this->primaryKey(),
             'id_cc_filtering' => $this->integer()->notNull(),
             'id_storage' => $this->integer(),
-            'started_at' => $this->dateTime(),
-            'finished_at' => $this->dateTime(),
+            'started_at' => $this->integer(),
+            'finished_at' => $this->integer(),
         ]);
 
         $this->addForeignKey(

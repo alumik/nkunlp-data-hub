@@ -81,9 +81,42 @@ class m230417_093952_add_modifiers extends Migration
      */
     public function safeDown()
     {
-        echo "m230417_093952_add_modifiers cannot be reverted.\n";
-
-        return false;
+        $this->dropIndex(
+            'idx-cc_chinese_extraction-id_cc_download',
+            'cc_chinese_extraction'
+        );
+        $this->dropIndex(
+            'idx-cc_deduplication-id_cc_filtering',
+            'cc_deduplication'
+        );
+        $this->dropIndex(
+            'idx-cc_download-id_cc_data',
+            'cc_download'
+        );
+        $this->dropIndex(
+            'idx-cc_filter-name',
+            'cc_filter'
+        );
+        $this->dropIndex(
+            'idx-cc_filtering-id_cc_chinese_extraction',
+            'cc_filtering'
+        );
+        $this->dropIndex(
+            'idx-cc_filtering_filter-id_cc_filtering-id_cc_filter',
+            'cc_filtering_filter'
+        );
+        $this->dropIndex(
+            'idx-drive-name',
+            'drive'
+        );
+        $this->dropIndex(
+            'idx-year_month-cc_code',
+            'year_month'
+        );
+        $this->dropIndex(
+            'idx-year_month-year-month',
+            'year_month'
+        );
     }
 
     /*

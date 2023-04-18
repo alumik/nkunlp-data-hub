@@ -27,8 +27,6 @@ class m230418_023322_add_status_column extends Migration
         $this->dropColumn('cc_chinese_extraction', 'status');
         $this->dropColumn('cc_filtering', 'status');
         $this->dropColumn('cc_deduplication', 'status');
-
-        return false;
     }
 
     /*

@@ -26,8 +26,6 @@ class m230417_090441_add_drives extends Migration
     public function safeDown()
     {
         $this->truncateTable('drive');
-
-        return false;
     }
 
     /*
