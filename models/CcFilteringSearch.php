@@ -52,9 +52,9 @@ class CcFilteringSearch extends CcFiltering
         ];
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'id_cc_chinese_extraction' => $this->id_cc_chinese_extraction,
-            'status' => $this->status,
+            'cc_filtering.id' => $this->id,
+            'cc_filtering.id_cc_chinese_extraction' => $this->id_cc_chinese_extraction,
+            'cc_filtering.status' => $this->status,
         ]);
         $query->leftJoin(CcStorage::tableName(), 'cc_filtering.id_storage = cc_storage.id');
         $query->leftJoin(Drive::tableName(), 'cc_storage.id_drive = drive.id');

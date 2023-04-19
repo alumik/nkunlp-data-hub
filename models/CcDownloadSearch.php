@@ -48,9 +48,9 @@ class CcDownloadSearch extends CcDownload
         ];
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'id_cc_data' => $this->id_cc_data,
-            'status' => $this->status,
+            'cc_download.id' => $this->id,
+            'cc_download.id_cc_data' => $this->id_cc_data,
+            'cc_download.status' => $this->status,
         ]);
         $query->leftJoin(CcStorage::tableName(), 'cc_download.id_storage = cc_storage.id');
         $query->leftJoin(Drive::tableName(), 'cc_storage.id_drive = drive.id');

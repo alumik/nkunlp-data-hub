@@ -48,10 +48,10 @@ class CcStorageSearch extends CcStorage
         ];
 
         $query->andFilterWhere([
-            'id' => $this->id,
+            'cc_storage.id' => $this->id,
         ]);
-        $query->andFilterWhere(['like', 'prefix', $this->prefix])
-            ->andFilterWhere(['like', 'path', $this->path]);
+        $query->andFilterWhere(['like', 'cc_storage.prefix', $this->prefix])
+            ->andFilterWhere(['like', 'cc_storage.path', $this->path]);
         $query->leftJoin(Drive::tableName(), 'cc_storage.id_drive = drive.id');
         $query->leftJoin(YearMonth::tableName(), 'cc_storage.id_year_month = year_month.id');
         $query->andFilterWhere(['like', 'drive.name', $this->driveName]);

@@ -42,8 +42,8 @@ class CcDataSearch extends CcData
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['id' => $this->id]);
-        $query->andFilterWhere(['like', 'uri', $this->uri]);
+        $query->andFilterWhere(['cc_data.id' => $this->id]);
+        $query->andFilterWhere(['like', 'cc_data.uri', $this->uri]);
         $query->leftJoin(YearMonth::tableName(), 'cc_data.id_year_month = year_month.id');
         $query->andFilterWhere(['like', 'CONCAT(year_month.year, "-", year_month.month)', $this->yearMonthStr]);
 

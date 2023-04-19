@@ -52,9 +52,9 @@ class CcChineseExtractionSearch extends CcChineseExtraction
         ];
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'id_cc_download' => $this->id_cc_download,
-            'status' => $this->status,
+            'cc_chinese_extraction.id' => $this->id,
+            'cc_chinese_extraction.id_cc_download' => $this->id_cc_download,
+            'cc_chinese_extraction.status' => $this->status,
         ]);
         $query->leftJoin(CcStorage::tableName(), 'cc_chinese_extraction.id_storage = cc_storage.id');
         $query->leftJoin(Drive::tableName(), 'cc_storage.id_drive = drive.id');
