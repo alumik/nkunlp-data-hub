@@ -10,7 +10,6 @@ use yii\db\ActiveRecord;
  * @property string $name
  * @property string|null $parameters
  *
- * @property CcDeduplication $ccDeduplication
  * @property CcFiltering[] $ccFilterings
  */
 class CcFilter extends ActiveRecord
@@ -36,11 +35,6 @@ class CcFilter extends ActiveRecord
             'name' => '名称',
             'parameters' => '规则参数',
         ];
-    }
-
-    public function getCcDeduplication(): ActiveQuery
-    {
-        return $this->hasOne(CcDeduplication::class, ['id_cc_filtering' => 'id']);
     }
 
     public function getCcFilterings(): ActiveQuery

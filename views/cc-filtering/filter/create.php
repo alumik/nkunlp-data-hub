@@ -6,7 +6,8 @@ use yii\helpers\Html;
 /* @var $model app\models\CcFilter */
 
 $this->title = '新建过滤规则';
-$this->params['breadcrumbs'][] = ['label' => '过滤规则', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '正则清洗', 'url' => ['/cc-filtering']];
+$this->params['breadcrumbs'][] = ['label' => '过滤规则', 'url' => ['/cc-filtering/filter/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cc-filter-create">

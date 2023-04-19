@@ -4,37 +4,30 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\CcFilteringSearch */
+/* @var $searchModel app\models\CcFilterSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cc Filterings';
+$this->title = '过滤规则';
+$this->params['breadcrumbs'][] = ['label' => '正则清洗', 'url' => ['/cc-filtering']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="cc-filtering-index">
+<div class="cc-filter-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Cc Filtering', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('新建过滤规则', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
-            'id_cc_chinese_extraction',
-            'id_storage',
-            'started_at',
-            'finished_at',
-
+            'name',
+            'parameters',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
 
 </div>

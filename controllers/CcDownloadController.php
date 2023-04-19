@@ -34,9 +34,8 @@ class CcDownloadController extends Controller
         $model = [];
         $model['pending_jobs'] = CcData::find()
             ->leftJoin(CcDownload::tableName(), 'cc_data.id = cc_download.id_cc_data')
-            ->orFilterWhere(['cc_download.id' => null])
-            ->orFilterWhere(['cc_download.status' => CcDownload::STATUS_NOT_STARTED])
-            ->orFilterWhere(['cc_download.status' => CcDownload::STATUS_STARTED])
+            ->orWhere(['cc_download.id' => null])
+            ->orWhere(['<>','cc_download.status', CcDownload::STATUS_FINISHED])
             ->count();
         $model['finished_jobs'] = CcDownload::find()
             ->where(['status' => CcDownload::STATUS_FINISHED])
@@ -120,19 +119,19 @@ class CcDownloadController extends Controller
             select count(*) over()
             from cc_download
             where status = 2
-              and date(finished_at) like :date
-            group by date(finished_at)
+              and date(convert_tz(from_unixtime(finished_at), @@global.time_zone, '+8:00')) like :date
+            group by date(convert_tz(from_unixtime(finished_at), @@global.time_zone, '+8:00'))
         ", [':date' => $date . '%'])->queryScalar();
         $dataProvider = new SqlDataProvider([
             'sql' => "
-                select date(finished_at) as date0,
+                select date(convert_tz(from_unixtime(finished_at), @@global.time_zone, '+8:00')) as date0,
                        count(*) as finishedJobs,
                        sum(size) as finishedDownloadSize,
-                       sum(size) / max(if(date(finished_at) = date(convert_tz(curtime(), @@global.time_zone, '+8:00')), timestampdiff(second, date(convert_tz(curtime(), @@global.time_zone, '+8:00')), convert_tz(curtime(), @@global.time_zone, '+8:00')), 24 * 3600)) as averageDownloadSpeed
+                       sum(size) / max(if(date(convert_tz(from_unixtime(finished_at), @@global.time_zone, '+8:00')) = date(convert_tz(curtime(), @@global.time_zone, '+8:00')), timestampdiff(second, date(convert_tz(curtime(), @@global.time_zone, '+8:00')), convert_tz(curtime(), @@global.time_zone, '+8:00')), 24 * 3600)) as averageDownloadSpeed
                 from cc_download
                 where status = 2
-                  and date(finished_at) like :date
-                group by date(finished_at)
+                  and date(convert_tz(from_unixtime(finished_at), @@global.time_zone, '+8:00')) like :date
+                group by date(convert_tz(from_unixtime(finished_at), @@global.time_zone, '+8:00'))
             ",
             'params' => [':date' => $date . '%'],
             'totalCount' => $count,

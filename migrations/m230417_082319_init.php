@@ -28,7 +28,7 @@ class m230417_082319_init extends Migration
 
         $this->createTable('cc_data', [
             'id' => $this->primaryKey(),
-            'uri' => $this->string(1023)->notNull(),
+            'uri' => $this->string()->notNull(),
             'id_year_month' => $this->integer()->notNull()->defaultValue(1),
         ]);
 
@@ -45,7 +45,7 @@ class m230417_082319_init extends Migration
             'id_drive' => $this->integer()->notNull(),
             'id_year_month' => $this->integer()->notNull()->defaultValue(1),
             'prefix' => $this->string()->notNull(),
-            'path' => $this->string(1023)->notNull(),
+            'path' => $this->string()->notNull(),
             'size' => $this->integer(),
         ]);
 

@@ -7,11 +7,11 @@ use yii\grid\GridView;
 /** @var SqlDataProvider $dataProvider */
 
 $this->title = '存储情况';
-$this->params['breadcrumbs'][] = ['label' => '中文提取', 'url' => ['/cc-chinese-extraction']];
+$this->params['breadcrumbs'][] = ['label' => '正则清洗', 'url' => ['/cc-filtering']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="cc-chinese-extraction-storage">
+<div class="cc-filtering-storage">
 
     <h1><?= Html::encode($this->title); ?></h1>
 
@@ -39,17 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => '已存储数据大小',
                 'value' => function ($model) {
                     return Yii::$app->formatter->asShortSize($model['finishedOutSize'], 2);
-                },
-            ],
-            [
-                'attribute' => 'pendingNextJobs',
-                'label' => '未完成下一阶段任务数量',
-            ],
-            [
-                'attribute' => 'pendingNextInSize',
-                'label' => '未完成下一阶段数据大小',
-                'value' => function ($model) {
-                    return Yii::$app->formatter->asShortSize($model['pendingNextInSize'], 2);
                 },
             ],
         ],

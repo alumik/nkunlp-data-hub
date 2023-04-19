@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use app\models\CcChineseExtraction;
-use app\models\CcChineseExtractionSearch;
-use app\models\CcDownload;
 use app\models\CcStorage;
 use Yii;
+use app\models\CcFiltering;
+use app\models\CcFilteringSearch;
 use yii\data\SqlDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class CcChineseExtractionController extends Controller
+class CcFilteringController extends Controller
 {
     public function behaviors(): array
     {
@@ -32,25 +32,31 @@ class CcChineseExtractionController extends Controller
     public function actionIndex(): string
     {
         $model = [];
-        $model['pending_jobs'] = CcDownload::find()
-            ->leftJoin(CcChineseExtraction::tableName(), 'cc_download.id = cc_chinese_extraction.id_cc_download')
-            ->orWhere(['cc_chinese_extraction.id' => null])
-            ->orWhere(['<>','cc_chinese_extraction.status', CcChineseExtraction::STATUS_FINISHED])
+        $model['pending_jobs'] = CcChineseExtraction::find()
+            ->leftJoin(CcFiltering::tableName(), 'cc_chinese_extraction.id = cc_filtering.id_cc_chinese_extraction')
+            ->orWhere(['cc_filtering.id' => null])
+            ->orWhere(['!=', 'cc_filtering.status', CcFiltering::STATUS_FINISHED])
             ->count();
-        $model['pending_size'] = CcDownload::find()
+        $model['pending_size'] = CcChineseExtraction::find()
             ->select(['IFNULL(SUM(cc_storage.size), 0) AS size'])
-            ->leftJoin(CcChineseExtraction::tableName(), 'cc_download.id = cc_chinese_extraction.id_cc_download')
-            ->leftJoin(CcStorage::tableName(), 'cc_download.id_storage = cc_storage.id')
-            ->orWhere(['cc_chinese_extraction.id' => null])
-            ->orWhere(['<>','cc_chinese_extraction.status', CcChineseExtraction::STATUS_FINISHED])
-            ->scalar();
-        $model['finished_jobs'] = CcChineseExtraction::find()
-            ->where(['status' => CcChineseExtraction::STATUS_FINISHED])
-            ->count();
-        $model['finished_out_size'] = CcChineseExtraction::find()
-            ->select(['SUM(size) AS size'])
+            ->leftJoin(CcFiltering::tableName(), 'cc_chinese_extraction.id = cc_filtering.id_cc_chinese_extraction')
             ->leftJoin(CcStorage::tableName(), 'cc_chinese_extraction.id_storage = cc_storage.id')
-            ->where(['status' => CcChineseExtraction::STATUS_FINISHED])
+            ->orWhere(['cc_filtering.id' => null])
+            ->orWhere(['<>','cc_filtering.status', CcFiltering::STATUS_FINISHED])
+            ->scalar();
+        $model['finished_jobs'] = CcFiltering::find()
+            ->where(['status' => CcFiltering::STATUS_FINISHED])
+            ->count();
+        $model['finished_in_size'] = CcChineseExtraction::find()
+            ->select(['IFNULL(SUM(cc_storage.size), 0) AS size'])
+            ->leftJoin(CcFiltering::tableName(), 'cc_chinese_extraction.id = cc_filtering.id_cc_chinese_extraction')
+            ->leftJoin(CcStorage::tableName(), 'cc_chinese_extraction.id_storage = cc_storage.id')
+            ->orWhere(['cc_filtering.status' => CcFiltering::STATUS_FINISHED])
+            ->scalar();
+        $model['finished_out_size'] = CcFiltering::find()
+            ->select(['IFNULL(SUM(cc_storage.size), 0) AS size'])
+            ->leftJoin(CcStorage::tableName(), 'cc_filtering.id_storage = cc_storage.id')
+            ->where(['status' => CcFiltering::STATUS_FINISHED])
             ->scalar();
         return $this->render('index', [
             'model' => $model,
@@ -59,7 +65,7 @@ class CcChineseExtractionController extends Controller
 
     public function actionTask(): string
     {
-        $searchModel = new CcChineseExtractionSearch();
+        $searchModel = new CcFilteringSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('task', [
@@ -79,8 +85,8 @@ class CcChineseExtractionController extends Controller
     {
         $count = Yii::$app->db->createCommand("
             select count(*) over()
-            from cc_chinese_extraction cce
-                     left join cc_storage cs on cs.id = cce.id_storage
+            from cc_filtering cf
+                     left join cc_storage cs on cs.id = cf.id_storage
                      left join drive d on cs.id_drive = d.id
             where status = 2
               and d.name like :driveName
@@ -90,14 +96,11 @@ class CcChineseExtractionController extends Controller
             'sql' => "
                 select d.name as driveName,
                        count(*) as finishedJobs,
-                       sum(cs.size) as finishedOutSize,
-                       sum(if(cf.id is null or cf.status != 2, 1, 0)) as pendingNextJobs,
-                       sum(if(cf.id is null or cf.status != 2, cs.size, 0)) as pendingNextInSize
-                from cc_chinese_extraction cce
-                         left join cc_storage cs on cs.id = cce.id_storage
+                       sum(cs.size) as finishedOutSize
+                from cc_filtering cf
+                         left join cc_storage cs on cs.id = cf.id_storage
                          left join drive d on cs.id_drive = d.id
-                         left join cc_filtering cf on cce.id = cf.id_cc_chinese_extraction
-                where cce.status = 2
+                where status = 2
                   and d.name like :driveName
                 group by d.name
             ",
@@ -108,8 +111,6 @@ class CcChineseExtractionController extends Controller
                     'driveName',
                     'finishedJobs',
                     'finishedOutSize',
-                    'pendingNextJobs',
-                    'pendingNextInSize'
                 ],
             ],
             'pagination' => [
@@ -121,9 +122,9 @@ class CcChineseExtractionController extends Controller
         ]);
     }
 
-    protected function findModel($id): ?CcChineseExtraction
+    protected function findModel($id)
     {
-        if (($model = CcChineseExtraction::findOne($id)) !== null) {
+        if (($model = CcFiltering::findOne($id)) !== null) {
             return $model;
         }
 

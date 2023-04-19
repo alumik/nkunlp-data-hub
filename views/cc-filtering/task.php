@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\CcChineseExtractionSearch */
+/* @var $searchModel app\models\CcFilteringSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '任务列表';
-$this->params['breadcrumbs'][] = ['label' => '中文提取', 'url' => ['/cc-chinese-extraction']];
+$this->params['breadcrumbs'][] = ['label' => '正则清洗', 'url' => ['/cc-filtering']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="cc-chinese-extraction-task">
+<div class="cc-filtering-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'id',
-            'id_cc_download',
+            'id_cc_chinese_extraction',
             [
                 'attribute' => 'driveName',
                 'value' => 'storage.drive.name',

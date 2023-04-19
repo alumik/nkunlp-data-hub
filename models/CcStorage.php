@@ -14,7 +14,6 @@ use yii\db\ActiveRecord;
  * @property int|null $size
  *
  * @property CcChineseExtraction[] $ccChineseExtractions
- * @property CcDeduplication[] $ccDeduplications
  * @property CcDownload[] $ccDownloads
  * @property CcFiltering[] $ccFilterings
  * @property Drive $drive
@@ -34,7 +33,7 @@ class CcStorage extends ActiveRecord
             [['id_drive', 'prefix', 'path'], 'required'],
             [['id_drive', 'id_year_month', 'size'], 'integer'],
             [['prefix'], 'string', 'max' => 255],
-            [['path'], 'string', 'max' => 1023],
+            [['path'], 'string', 'max' => 255],
             [
                 ['id_drive'],
                 'exist',
@@ -69,11 +68,6 @@ class CcStorage extends ActiveRecord
     public function getCcChineseExtractions(): ActiveQuery
     {
         return $this->hasMany(CcChineseExtraction::class, ['id_storage' => 'id']);
-    }
-
-    public function getCcDeduplications(): ActiveQuery
-    {
-        return $this->hasMany(CcDeduplication::class, ['id_storage' => 'id']);
     }
 
     public function getCcDownloads(): ActiveQuery

@@ -26,7 +26,7 @@ class CcData extends ActiveRecord
         return [
             [['uri'], 'required'],
             [['id_year_month'], 'integer'],
-            [['uri'], 'string', 'max' => 1023],
+            [['uri'], 'string', 'max' => 255],
             [
                 ['id_year_month'],
                 'exist',

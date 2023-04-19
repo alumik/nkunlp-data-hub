@@ -4,45 +4,28 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\CcFiltering;
 
-/**
- * CcFilteringSearch represents the model behind the search form of `app\models\CcFiltering`.
- */
 class CcFilteringSearch extends CcFiltering
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
+    public $driveName;
+    public $prefixAndPath;
+
+    public function rules(): array
     {
         return [
-            [['id', 'id_cc_chinese_extraction', 'id_storage'], 'integer'],
-            [['started_at', 'finished_at'], 'safe'],
+            [['id', 'id_cc_chinese_extraction', 'status'], 'integer'],
+            [['driveName', 'prefixAndPath'], 'safe'],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function scenarios()
+    public function scenarios(): array
     {
-        // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
 
-    /**
-     * Creates data provider instance with search query applied
-     *
-     * @param array $params
-     *
-     * @return ActiveDataProvider
-     */
-    public function search($params)
+    public function search($params): ActiveDataProvider
     {
         $query = CcFiltering::find();
-
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -55,14 +38,32 @@ class CcFilteringSearch extends CcFiltering
             // $query->where('0=1');
             return $dataProvider;
         }
+        $dataProvider->sort->attributes['driveName'] = [
+            'asc' => ['drive.name' => SORT_ASC, 'id' => SORT_ASC],
+            'desc' => ['drive.name' => SORT_DESC, 'id' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['prefixAndPath'] = [
+            'asc' => ['cc_storage.prefix' => SORT_ASC, 'cc_storage.path' => SORT_ASC],
+            'desc' => ['cc_storage.prefix' => SORT_DESC, 'cc_storage.path' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['size'] = [
+            'asc' => ['cc_storage.size' => SORT_ASC],
+            'desc' => ['cc_storage.size' => SORT_DESC],
+        ];
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'id_cc_chinese_extraction' => $this->id_cc_chinese_extraction,
-            'id_storage' => $this->id_storage,
-            'started_at' => $this->started_at,
-            'finished_at' => $this->finished_at,
+            'status' => $this->status,
+        ]);
+        $query->leftJoin(CcStorage::tableName(), 'cc_filtering.id_storage = cc_storage.id');
+        $query->leftJoin(Drive::tableName(), 'cc_storage.id_drive = drive.id');
+        $query->leftJoin(YearMonth::tableName(), 'cc_storage.id_year_month = year_month.id');
+        $query->andFilterWhere(['like', 'drive.name', $this->driveName]);
+        $query->andFilterWhere([
+            'like',
+            'CONCAT(year_month.year, "-", year_month.month, "/", cc_storage.prefix, "/", cc_storage.path)',
+            $this->prefixAndPath,
         ]);
 
         return $dataProvider;

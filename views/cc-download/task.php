@@ -20,13 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'id',
-            [
-                'attribute' => 'id_cc_data',
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return Html::a($model->id_cc_data, ['/info/cc-data/view', 'id' => $model->id_cc_data]);
-                },
-            ],
+            'id_cc_data',
             [
                 'attribute' => 'driveName',
                 'value' => 'storage.drive.name',

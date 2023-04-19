@@ -66,6 +66,24 @@ $this->title = Yii::$app->name;
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">正则清洗</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <?= Html::a(
+                                '前往 &raquo;',
+                                ['/cc-filtering'],
+                                ['class' => 'btn btn-default']
+                            ); ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

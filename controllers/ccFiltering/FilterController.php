@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\cc;
+namespace app\controllers\ccFiltering;
 
 use Yii;
 use app\models\CcFilter;
@@ -32,6 +32,12 @@ class FilterController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function init(): void
+    {
+        parent::init();
+        $this->viewPath = '@app/views/cc-filtering/filter';
     }
 
     public function actionIndex(): string

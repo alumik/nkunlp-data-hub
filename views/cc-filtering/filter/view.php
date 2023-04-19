@@ -1,15 +1,17 @@
 <?php
 
 use yii\helpers\Html;
+use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\CcFilter */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => '过滤规则', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+$this->params['breadcrumbs'][] = ['label' => '正则清洗', 'url' => ['/cc-filtering']];
+$this->params['breadcrumbs'][] = ['label' => '过滤规则', 'url' => ['/cc-filtering/filter/index']];
+$this->params['breadcrumbs'][] = $model->id;
+YiiAsset::register($this);
 ?>
 <div class="cc-filter-view">
 

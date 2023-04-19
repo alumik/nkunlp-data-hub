@@ -72,17 +72,17 @@ class CcChineseExtraction extends ActiveRecord
 
     public function getCcDownload(): ActiveQuery
     {
-        return $this->hasOne(CcDownload::className(), ['id' => 'id_cc_download']);
+        return $this->hasOne(CcDownload::class, ['id' => 'id_cc_download']);
     }
 
     public function getStorage(): ActiveQuery
     {
-        return $this->hasOne(CcStorage::className(), ['id' => 'id_storage']);
+        return $this->hasOne(CcStorage::class, ['id' => 'id_storage']);
     }
 
     public function getCcFiltering(): ActiveQuery
     {
-        return $this->hasOne(CcFiltering::className(), ['id_cc_chinese_extraction' => 'id']);
+        return $this->hasOne(CcFiltering::class, ['id_cc_chinese_extraction' => 'id']);
     }
 
     public function getStartedAtFormatted(): ?string
