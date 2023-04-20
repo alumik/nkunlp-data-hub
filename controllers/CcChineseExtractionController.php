@@ -104,6 +104,7 @@ class CcChineseExtractionController extends Controller
             'params' => [':driveName' => '%' . $driveName . '%'],
             'totalCount' => $count,
             'sort' => [
+                'defaultOrder' => ['driveName' => SORT_ASC],
                 'attributes' => [
                     'driveName',
                     'finishedJobs',
