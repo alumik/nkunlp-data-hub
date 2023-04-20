@@ -38,7 +38,7 @@ class CcFilteringController extends Controller
             ->orWhere(['!=', 'cc_filtering.status', CcFiltering::STATUS_FINISHED])
             ->count();
         $model['pending_size'] = CcChineseExtraction::find()
-            ->select(['IFNULL(SUM(cc_storage.size), 0) AS size'])
+            ->select(['ifnull(sum(cc_storage.size), 0) as size'])
             ->leftJoin(CcFiltering::tableName(), 'cc_chinese_extraction.id = cc_filtering.id_cc_chinese_extraction')
             ->leftJoin(CcStorage::tableName(), 'cc_chinese_extraction.id_storage = cc_storage.id')
             ->orWhere(['cc_filtering.id' => null])
@@ -48,13 +48,13 @@ class CcFilteringController extends Controller
             ->where(['status' => CcFiltering::STATUS_FINISHED])
             ->count();
         $model['finished_in_size'] = CcChineseExtraction::find()
-            ->select(['IFNULL(SUM(cc_storage.size), 0) AS size'])
+            ->select(['ifnull(sum(cc_storage.size), 0) as size'])
             ->leftJoin(CcFiltering::tableName(), 'cc_chinese_extraction.id = cc_filtering.id_cc_chinese_extraction')
             ->leftJoin(CcStorage::tableName(), 'cc_chinese_extraction.id_storage = cc_storage.id')
             ->orWhere(['cc_filtering.status' => CcFiltering::STATUS_FINISHED])
             ->scalar();
         $model['finished_out_size'] = CcFiltering::find()
-            ->select(['IFNULL(SUM(cc_storage.size), 0) AS size'])
+            ->select(['ifnull(sum(cc_storage.size), 0) as size'])
             ->leftJoin(CcStorage::tableName(), 'cc_filtering.id_storage = cc_storage.id')
             ->where(['status' => CcFiltering::STATUS_FINISHED])
             ->scalar();
@@ -123,7 +123,7 @@ class CcFilteringController extends Controller
         ]);
     }
 
-    protected function findModel($id)
+    protected function findModel($id): ?CcFiltering
     {
         if (($model = CcFiltering::findOne($id)) !== null) {
             return $model;

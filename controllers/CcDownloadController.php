@@ -41,11 +41,11 @@ class CcDownloadController extends Controller
             ->where(['status' => CcDownload::STATUS_FINISHED])
             ->count();
         $model['finished_download_size'] = CcDownload::find()
-            ->select(['IFNULL(SUM(size), 0) AS size'])
+            ->select(['sum(size) as size'])
             ->where(['status' => CcDownload::STATUS_FINISHED])
             ->scalar();
         $model['finished_storage_size'] = CcDownload::find()
-            ->select(['IFNULL(SUM(cc_storage.size), 0) AS size'])
+            ->select(['ifnull(sum(cc_storage.size), 0) as size'])
             ->leftJoin(CcStorage::tableName(), 'cc_download.id_storage = cc_storage.id')
             ->where(['status' => CcDownload::STATUS_FINISHED])
             ->scalar();

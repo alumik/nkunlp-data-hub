@@ -38,7 +38,7 @@ class CcChineseExtractionController extends Controller
             ->orWhere(['<>','cc_chinese_extraction.status', CcChineseExtraction::STATUS_FINISHED])
             ->count();
         $model['pending_size'] = CcDownload::find()
-            ->select(['IFNULL(SUM(cc_storage.size), 0) AS size'])
+            ->select(['ifnull(sum(cc_storage.size), 0) as size'])
             ->leftJoin(CcChineseExtraction::tableName(), 'cc_download.id = cc_chinese_extraction.id_cc_download')
             ->leftJoin(CcStorage::tableName(), 'cc_download.id_storage = cc_storage.id')
             ->orWhere(['cc_chinese_extraction.id' => null])
@@ -48,7 +48,7 @@ class CcChineseExtractionController extends Controller
             ->where(['status' => CcChineseExtraction::STATUS_FINISHED])
             ->count();
         $model['finished_out_size'] = CcChineseExtraction::find()
-            ->select(['SUM(size) AS size'])
+            ->select(['sum(size) as size'])
             ->leftJoin(CcStorage::tableName(), 'cc_chinese_extraction.id_storage = cc_storage.id')
             ->where(['status' => CcChineseExtraction::STATUS_FINISHED])
             ->scalar();
