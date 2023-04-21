@@ -15,7 +15,6 @@ use yii\db\ActiveRecord;
  *
  * @property CcChineseExtraction $ccChineseExtraction
  * @property CcStorage $storage
- * @property CcFilter[] $ccFilters
  * @property string|null $startedAtFormatted
  * @property string|null $finishedAtFormatted
  * @property string $prefixAndPath
@@ -80,13 +79,6 @@ class CcFiltering extends ActiveRecord
     public function getStorage(): ActiveQuery
     {
         return $this->hasOne(CcStorage::class, ['id' => 'id_storage']);
-    }
-
-    public function getCcFilters(): ActiveQuery
-    {
-        return $this
-            ->hasMany(CcFilter::class, ['id' => 'id_cc_filter'])
-            ->viaTable('cc_filtering_filter', ['id_cc_filtering' => 'id']);
     }
 
     public function getStartedAtFormatted(): ?string

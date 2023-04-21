@@ -2,15 +2,12 @@
 
 namespace app\models;
 
-use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
  * @property int $id
  * @property string $name
  * @property string|null $parameters
- *
- * @property CcFiltering[] $ccFilterings
  */
 class CcFilter extends ActiveRecord
 {
@@ -35,12 +32,5 @@ class CcFilter extends ActiveRecord
             'name' => '名称',
             'parameters' => '规则参数',
         ];
-    }
-
-    public function getCcFilterings(): ActiveQuery
-    {
-        return $this
-            ->hasMany(CcFiltering::class, ['id' => 'id_cc_filtering'])
-            ->viaTable('cc_filtering_filter', ['id_cc_filter' => 'id']);
     }
 }

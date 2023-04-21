@@ -13,13 +13,13 @@ class m230418_182035_add_uri_and_path_idx extends Migration
     public function safeUp()
     {
         $this->createIndex(
-            'idx_cc_data_uri',
+            'idx-cc_data-uri',
             'cc_data',
             'uri',
             true,
         );
         $this->createIndex(
-            'idx_cc_storage_prefix_path',
+            'idx-cc_storage-prefix-path',
             'cc_storage',
             ['prefix', 'path'],
             true,
@@ -31,8 +31,8 @@ class m230418_182035_add_uri_and_path_idx extends Migration
      */
     public function safeDown()
     {
-        $this->dropIndex('idx_cc_data_uri', 'cc_data');
-        $this->dropIndex('idx_cc_storage_prefix_path', 'cc_storage');
+        $this->dropIndex('idx-cc_data-uri', 'cc_data');
+        $this->dropIndex('idx-cc_storage-prefix-path', 'cc_storage');
     }
 
     /*

@@ -36,9 +36,6 @@ class ProgressController extends Controller
             ->where(['status' => CcChineseExtraction::STATUS_FINISHED])
             ->count();
         $progress['cc_filtering'] = CcFiltering::find()->where(['status' => CcFiltering::STATUS_FINISHED])->count();
-//        $progress['cc_deduplication'] = CcDeduplication::find()
-//            ->where(['status' => CcDeduplication::STATUS_FINISHED])
-//            ->count();
 
         return $this->render('index', [
             'progress' => $progress,
