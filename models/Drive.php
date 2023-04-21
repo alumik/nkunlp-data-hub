@@ -26,7 +26,10 @@ class Drive extends ActiveRecord
     public function behaviors(): array
     {
         return [
-            TimestampBehavior::class,
+            [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'updated_at',
+            ]
         ];
     }
 
