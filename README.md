@@ -1,3 +1,7 @@
-# NKU NLP Center
+# NKCS NLP Data Hub
 
-NLP Data Management Center of College of Software, Nankai University.
+This is a corpus management platform for NLP tasks.
+
+## Copyright
+
+© 2023 College of Software, Nankai University All Rights Reserved
